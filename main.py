@@ -47,8 +47,16 @@ def get_info_about_arbitr_by_f_i_o(**massage_number):
         print(cookies_dict)
 
 
-
+# куки из ефрсб
 cookie = get_cookie()
 
 
-print(send_post_to_efrsb_mas(cookie=cookie))
+
+# ссылка со всесеми сообщениями
+# print(ol_massege_info(cookie=cookie))
+
+
+# ссылка на арбитражного упровляющего
+# number = 11465
+# print(get_name_arbitr(cookie=cookie,number=number))
+
