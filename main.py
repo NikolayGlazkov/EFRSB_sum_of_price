@@ -20,7 +20,7 @@ def get_cookie():
 
 def get_info_about_arbitr_by_f_i_o(**massage_number):
     with webdriver.Chrome() as driver:
-        wait = WebDriverWait(driver, 30)  # Увеличим время ожидания до 30 секунд
+        wait = WebDriverWait(driver, 10)  # Увеличим время ожидания до 30 секунд
         
         driver.get('https://old.bankrot.fedresurs.ru/Default.aspx')
         
@@ -57,6 +57,6 @@ cookie = get_cookie()
 
 
 # ссылка на арбитражного упровляющего
-# number = 11465
-# print(get_name_arbitr(cookie=cookie,number=number))
+number = 19747
+ol_name_info(cookie=cookie,number=number)
 
