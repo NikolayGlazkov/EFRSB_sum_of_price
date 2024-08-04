@@ -1,733 +1,890 @@
-			<div class="tabset">
-				<ul style="margin-left: 0px">
-					<li style="padding: 0 0 0 20px;">
-						<div id="ctl00_BodyPlaceHolder_rtsPublisherType" class="RadTabStrip RadTabStrip_MainTheme RadTabStripTop_MainTheme" style="border-width:0px;border-style:None;">
-	<!-- 2012.3.1016.40 --><div class="rtsLevel rtsLevel1">
-		<ul class="rtsUL"><li class="rtsLI rtsFirst"><a class="rtsLink rtsSelected" onclick="ClickTab()" href="#" style="white-space: nowrap"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Арбитражный<br>управляющий</span></span></span></a></li><li class="rtsLI"><a class="rtsLink rtsAfter" onclick="ClickTab()" href="#" style="white-space: nowrap"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Организатор торгов<br>– юридическое лицо</span></span></span></a></li><li class="rtsLI"><a class="rtsLink" onclick="ClickTab()" href="#" style="white-space: nowrap"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Организатор торгов<br>– физическое лицо</span></span></span></a></li><li class="rtsLI"><a class="rtsLink other_mainTheme" onclick="ClickTab()" href="#"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">СРО АУ</span></span></span></a></li><li class="rtsLI"><a class="rtsLink other_mainTheme" href="#"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">ЮЛ</span></span></span></a></li><li class="rtsLI"><a class="rtsLink other_mainTheme" href="#"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">ФЛ</span></span></span></a></li><li class="rtsLI"><a class="rtsLink other_mainTheme" href="#"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Публикатор ФНС</span></span></span></a></li><li class="rtsLI rtsLast"><a class="rtsLink" href="#"><span class="rtsOut"><span class="rtsIn"><span class="rtsTxt">Прочие</span></span></span></a></li></ul>
-	</div><input id="ctl00_BodyPlaceHolder_rtsPublisherType_ClientState" name="ctl00_BodyPlaceHolder_rtsPublisherType_ClientState" type="hidden" />
-</div>
-					</li>
-				</ul>
-			</div>
-			<div id="ctl00_BodyPlaceHolder_radMulti">
-	<div id="ctl00_BodyPlaceHolder_RadPageView1">
-		
-					<div id="ctl00_BodyPlaceHolder_upOrgs">
-			
-							
-
-<table class="filter">
-	<tr>
-		<td class="fhead">
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<div id="ctl00_BodyPlaceHolder_SearchArbitrManager1_updFilter">
-				
-					<div id="ctl00_BodyPlaceHolder_SearchArbitrManager1_pArbitrManager" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;ctl00_BodyPlaceHolder_SearchArbitrManager1_ibArmSearch&#39;)">
-					
-						<table class="fforms">
-							<tr>
-								<td align="left" nowrap="nowrap">
-									СРО
-								</td>
-								<td nowrap="nowrap">
-									
-
-<table cellpadding="0" cellspacing="0">
-    <tr>
-        <td>
-            <input name="ctl00$BodyPlaceHolder$SearchArbitrManager1$msSro$tbSelectedText" type="text" readonly="readonly" id="ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro_tbSelectedText" class="form" onclick="OpenModalWindow_ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro()" style="width:300px;cursor: pointer" />
-        </td>
-        <td>
-            <img id="ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro_imgSelect" title="Выбрать" onclick="OpenModalWindow_ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro()" src="img/ico_search.png" alt="Выбрать" align="absmiddle" style="cursor: pointer;" />
-        </td>
-        <td>
-            <img id="ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro_imgClear" title="Очистить" onclick="Clear_ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro()" src="img/ico_clear.png" alt="Очистить" align="absmiddle" style="cursor: pointer; margin-right: 2px;" />
-            <input type="hidden" name="ctl00$BodyPlaceHolder$SearchArbitrManager1$msSro$hfSelectedValue" id="ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro_hfSelectedValue" />
-            <input type="hidden" name="ctl00$BodyPlaceHolder$SearchArbitrManager1$msSro$hfSelectedType" id="ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro_hfSelectedType" />
-        </td>
-    </tr>
-</table>
-
-<script language="javascript" type="text/javascript">
-    function OpenModalWindow_ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro() {
-        var myQueryString = document.getElementById("ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro_hfSelectedValue").value;
-        var url = "/SroListWindow.aspx";
-
-        var windowUrl = url !== ""
-            ? url + ((myQueryString != null && myQueryString != "") ? "?str=" + myQueryString : "")
-            : url;
-
-        if (windowUrl == "")
-            alert("Не задан Url страницы со списком выбора!");
-
-        var args = "";
-        var height = "640";
-        var width = "640";
-
-        ShowModalDialog(windowUrl, width, height, null, args,
-            function() {
-                var retVal = null;
-                switch (arguments.length) {
-                    case 1:
-                        retVal = arguments[0];
-                        break;
-                    case 2:
-                        retVal = arguments[1].get_argument();
-                        break;
-                }
-
-                if (retVal == null || retVal == "cancel")
-                    return;
-
-                //Если массив значение, то
-                var retValsArray = null;
-                if ($.isArray(retVal)) {
-                    retValsArray = ['', retVal[0], retVal[1]];
-                } else {
-                    var delimeter = "|";
-                    retValsArray = retVal.split(delimeter);
-                }
-
-                document.getElementById("ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro_hfSelectedType").value = retValsArray[0];
-                document.getElementById("ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro_hfSelectedValue").value = retValsArray[1];
-                document.getElementById("ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro_tbSelectedText").value = retValsArray[2];
-                
-            });
-    }
-
-    function Clear_ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro() {
-        document.getElementById("ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro_hfSelectedType").value = "";
-        document.getElementById("ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro_hfSelectedValue").value = "";
-        document.getElementById("ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro_tbSelectedText").value = "";
-      
-        
-    }
-</script>
-
-								</td>
-							</tr>
-							<tr>
-								<td align="left" nowrap="nowrap">
-									Фамилия
-								</td>
-								<td nowrap="nowrap">
-									<input name="ctl00$BodyPlaceHolder$SearchArbitrManager1$tbLastName" type="text" maxlength="50" id="ctl00_BodyPlaceHolder_SearchArbitrManager1_tbLastName" class="form" style="width:300px;" />
-								</td>
-							</tr>
-							<tr>
-								<td align="left" nowrap="nowrap">
-									Имя
-								</td>
-								<td nowrap="nowrap">
-									<input name="ctl00$BodyPlaceHolder$SearchArbitrManager1$tbFirstName" type="text" maxlength="50" id="ctl00_BodyPlaceHolder_SearchArbitrManager1_tbFirstName" class="form" style="width:300px;" />
-								</td>
-							</tr>
-							<tr>
-								<td align="left" nowrap="nowrap">
-									Отчество
-								</td>
-								<td nowrap="nowrap">
-									<input name="ctl00$BodyPlaceHolder$SearchArbitrManager1$tbMiddleName" type="text" maxlength="50" id="ctl00_BodyPlaceHolder_SearchArbitrManager1_tbMiddleName" class="form" style="width:300px;" />
-								</td>
-							</tr>
-							<tr>
-								<td align="left" nowrap="nowrap">
-									Номер в реестре
-								</td>
-								<td nowrap="nowrap">
-									<input name="ctl00$BodyPlaceHolder$SearchArbitrManager1$tbRegNumFrs" type="text" value="11465" maxlength="30" id="ctl00_BodyPlaceHolder_SearchArbitrManager1_tbRegNumFrs" class="form" style="width:300px;" />
-								</td>
-							</tr>
-							<tr id="ctl00_BodyPlaceHolder_SearchArbitrManager1_trWithPublicatedMessages" style="display: none; visibility: hidden">
-						<td align="left" nowrap="nowrap">
-									Только с сообщениями
-								</td>
-						<td nowrap="nowrap">
-									<input id="ctl00_BodyPlaceHolder_SearchArbitrManager1_chbWithPublicatedMessages" type="checkbox" name="ctl00$BodyPlaceHolder$SearchArbitrManager1$chbWithPublicatedMessages" />
-								</td>
-					</tr>
-					
-							<tr>
-								<td>
-								</td>
-								<td>
-									<input type="image" name="ctl00$BodyPlaceHolder$SearchArbitrManager1$ibArmSearch" id="ctl00_BodyPlaceHolder_SearchArbitrManager1_ibArmSearch" title="Поиск" class="filter_seach" src="img/but_search.png" onclick="ClickAM();" />
-									<input type="image" name="ctl00$BodyPlaceHolder$SearchArbitrManager1$ibArmClear" id="ctl00_BodyPlaceHolder_SearchArbitrManager1_ibArmClear" title="Очистить" class="filter_clear" src="img/but_clear.png" onclick="ClearArmForm(); return false;" />
-								</td>
-							</tr>
-						</table>
-					
-				</div>
-				
-			</div>
-		</td>
-	</tr>
-</table>
-<div id="ctl00_BodyPlaceHolder_SearchArbitrManager1_upArmList">
-				
-		
-		<div>
-					<table class="bank" cellspacing="0" rules="all" border="1" id="ctl00_BodyPlaceHolder_SearchArbitrManager1_gvArbitrManagers" style="border-collapse:collapse;">
+1|#||4|1426|updatePanel|ctl00_PrivateOffice1_updpRestore|
+			<div style="width: 270px; background-color: #bbd9ec;">
+				<div style="clear: both; padding-left: 4px; padding-right: 4px;" align="center">
+					<table>
 						<tr>
-							<th scope="col">ФИО</th><th scope="col">Рег. номер</th><th scope="col">СРО</th><th scope="col">Количество сообщений</th>
-						</tr><tr onclick="javascript:closeDialog(&#39;ArbitrManager|15790|Скопинцев Александр Александрович&#39;);" style="cursor:pointer;">
-							<td style="width:29%;">
-						Скопинцев Александр Александрович
-					</td><td style="width:15%;white-space:nowrap;">
-						11465
-					</td><td style="width:29%;">
-						 Ассоциация "Сибирская гильдия антикризисных  управляющих"   
-					</td><td align="center" style="width:12%;">
-						1548
-					</td>
+							<td style="background-color: #bbd9ec;" class="fm_gsm fm_grey">e-mail:&nbsp;&nbsp;
+									 <div id="ctl00_PrivateOffice1_ValidationSummary1" style="display:none;">
+
+</div>
+								<span id="ctl00_PrivateOffice1_RequiredFieldValidator1" style="display:none;"></span>
+								<span id="ctl00_PrivateOffice1_revEmailValidator" style="display:none;"></span>
+							</td>
+							<td style="background-color: #bbd9ec;">
+								<input name="ctl00$PrivateOffice1$tbEmailForPassword" type="text" maxlength="100" id="ctl00_PrivateOffice1_tbEmailForPassword" class="fm_gsm" style="width:150px;" />&nbsp;&nbsp;
+							</td>
+							<td style="background-color: #bbd9ec;">
+								<input type="image" name="ctl00$PrivateOffice1$ibtRestore" id="ctl00_PrivateOffice1_ibtRestore" class="CursorHand" src="img/header/next.gif" alt="Далее" align="absmiddle" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$PrivateOffice1$ibtRestore&quot;, &quot;&quot;, true, &quot;RestorePsw&quot;, &quot;&quot;, false, false))" style="height:21px;width:54px;" />
+							</td>
 						</tr>
 					</table>
+					<div align="center" class="fm_gsm fm_grey">На указанный адрес будет выслан пароль </div>
 				</div>
-		<input type="hidden" name="ctl00$BodyPlaceHolder$SearchArbitrManager1$hfMaxSize" id="ctl00_BodyPlaceHolder_SearchArbitrManager1_hfMaxSize" />
-		<table id="ctl00_BodyPlaceHolder_SearchArbitrManager1_PaggingAdvInfo1_tblPaggingAdvInfo">
-					<tr>
-						<td id="ctl00_BodyPlaceHolder_SearchArbitrManager1_PaggingAdvInfo1_tdPaggingAdvInfo" width="50%" class="all_page" style="padding-bottom:20px;">
+			</div>
+		|52503|updatePanel|ctl00_cphBody_upMessages|
+			
+			
+			<div>
+	<table class="bank" cellspacing="0" rules="all" border="1" id="ctl00_cphBody_gvMessages" style="border-collapse:collapse;">
+		<tr>
+			<th scope="col">Дата публикации <br/>(время московское)</th><th scope="col">Тип сообщения</th><th scope="col">Должник</th><th scope="col">Адрес</th><th scope="col">Кем опубликовано</th>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							30.07.2024 15:25:54
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=F27D439D1CC34B93B775B81C919359D2" onclick="openNewWin('/MessageWindow.aspx?ID=F27D439D1CC34B93B775B81C919359D2', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Гильмутдинов Азамат Талгатович">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=74C16D4175EE3AEB6AB45493E65EE789" title="Карточка должника Гильмутдинов Азамат Талгатович">
+								Гильмутдинов Азамат Талгатович
+							</a>
+						</td><td style="width:26%;">
+							420127, г Казань, ул Дементьева, д 29А, кв 18
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							27.07.2024 17:56:44
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=F398A88BF8EC43FAB78B6CE39647CCCA" onclick="openNewWin('/MessageWindow.aspx?ID=F398A88BF8EC43FAB78B6CE39647CCCA', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Детков Константин Валентинович">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=A6E53DA1FBF88DC96864231100DD1112" title="Карточка должника Детков Константин Валентинович">
+								Детков Константин Валентинович
+							</a>
+						</td><td style="width:26%;">
+							623090, Свердловская обл., г. Нижние Серги, ул. Володарского, д. 52
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							26.07.2024 09:57:58
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=C115B1F29A9143B897EEE66DF10A6C71" onclick="openNewWin('/MessageWindow.aspx?ID=C115B1F29A9143B897EEE66DF10A6C71', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Мамалиев Эльбрус Ибрагимович">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=16A2F4E69676B04BCE64DCA30C5594C2" title="Карточка должника Мамалиев Эльбрус Ибрагимович">
+								Мамалиев Эльбрус Ибрагимович
+							</a>
+						</td><td style="width:26%;">
+							618506, Пермский край, Соликамский р-н, поселок Красный Берег, ул Школьная, д 35
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							18.07.2024 10:08:33
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=021A597AB0074A20BC1BCB8A4EF99F60" onclick="openNewWin('/MessageWindow.aspx?ID=021A597AB0074A20BC1BCB8A4EF99F60', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Тухватуллина Ольга Юрьевна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=359CBA520567B2A9ADD46230D5E9E695" title="Карточка должника Тухватуллина Ольга Юрьевна">
+								Тухватуллина Ольга Юрьевна
+							</a>
+						</td><td style="width:26%;">
+							620091, г. Екатеринбург, ул. Корепина, д. 15/Стачек, д. 9, кв. 5
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							18.07.2024 09:44:17
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=29A84BDFA50F4593BB209A1A43923CE8" onclick="openNewWin('/MessageWindow.aspx?ID=29A84BDFA50F4593BB209A1A43923CE8', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Сердюкова Светлана Викторовна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=EBB5C13D20A6511BDE24664994E134A1" title="Карточка должника Сердюкова Светлана Викторовна">
+								Сердюкова Светлана Викторовна
+							</a>
+						</td><td style="width:26%;">
+							445354, Самарская обл, г Жигулевск, ул Морквашинская, д 6, кв 50
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							17.07.2024 13:07:13
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=18DBC577334A4E8AAF1A6A33DD213696" onclick="openNewWin('/MessageWindow.aspx?ID=18DBC577334A4E8AAF1A6A33DD213696', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Акатов Роман Вячеславович">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=DBE36E8F6915E71A28B477AF8A29E48D" title="Карточка должника Акатов Роман Вячеславович">
+								Акатов Роман Вячеславович
+							</a>
+						</td><td style="width:26%;">
+							404120, Волгоградская обл, г Волжский, ул им генерала Карбышева, д 74, кв 95
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							12.07.2024 15:49:22
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=9CDF91CE98574154B1E73C51C8256478" onclick="openNewWin('/MessageWindow.aspx?ID=9CDF91CE98574154B1E73C51C8256478', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Николаева Ксения Сергеевна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=06976EAF57F1D2482264513D6CEAF6F0" title="Карточка должника Николаева Ксения Сергеевна">
+								Николаева Ксения Сергеевна
+							</a>
+						</td><td style="width:26%;">
+							624230, Свердловская обл, г Нижняя Тура, поселок Платина, ул Набережная, д 19
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							12.07.2024 15:18:05
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=415836327221461DACA68E6A9DC4D788" onclick="openNewWin('/MessageWindow.aspx?ID=415836327221461DACA68E6A9DC4D788', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Алексеева Анна Эдуардовна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=2335DE731C1878AA4C14AE518FD4E932" title="Карточка должника Алексеева Анна Эдуардовна">
+								Алексеева Анна Эдуардовна
+							</a>
+						</td><td style="width:26%;">
+							184620, Мурманская обл., г. Североморск, пгт Сафоново, ул. Школьная, д.11, кв. 16
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							08.07.2024 15:24:45
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=85CB6F5C4D514820B38C2F15B67BACCA" onclick="openNewWin('/MessageWindow.aspx?ID=85CB6F5C4D514820B38C2F15B67BACCA', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Васильев Виталий Владимирович">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=79861DD20689D31B4144E21BCA3DD24F" title="Карточка должника Васильев Виталий Владимирович">
+								Васильев Виталий Владимирович
+							</a>
+						</td><td style="width:26%;">
+							353522, Краснодарский край, Темрюкский р-н, поселок За Родину, ул Красная, д 27
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							08.07.2024 15:11:08
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=FBD0578B0E1B49D087A9468B29DE22B5" onclick="openNewWin('/MessageWindow.aspx?ID=FBD0578B0E1B49D087A9468B29DE22B5', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Лобзинёв Валерий Викторович">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=D2CD5A9D4498B7CB3A548FA9FD0E52FD" title="Карточка должника Лобзинёв Валерий Викторович">
+								Лобзинёв Валерий Викторович
+							</a>
+						</td><td style="width:26%;">
+							446031, Самарская область, Сызранский район, г. Сызрань, пр-т 50 лет Октября, д. 54, кв. 62
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							06.07.2024 06:37:04
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=7EBE2373DF804C229E7335DB96CA2793" onclick="openNewWin('/MessageWindow.aspx?ID=7EBE2373DF804C229E7335DB96CA2793', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Бардасов Вячеслав Владимирович">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=AE83BF010A9FDBC94E64FD3E2479400D" title="Карточка должника Бардасов Вячеслав Владимирович">
+								Бардасов Вячеслав Владимирович
+							</a>
+						</td><td style="width:26%;">
+							6201335, Свердловская область, г. Екатеринбург, ул. Фрезеровщиков, д. 41, кв. 44
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							03.07.2024 15:12:08
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=4BDD2B716E594343AB2C5854C9A1E1BE" onclick="openNewWin('/MessageWindow.aspx?ID=4BDD2B716E594343AB2C5854C9A1E1BE', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Белевич Оксана Булатовна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=4D573253065D8618DFD4328D2B3302D9" title="Карточка должника Белевич Оксана Булатовна">
+								Белевич Оксана Булатовна
+							</a>
+						</td><td style="width:26%;">
+							455016, Челябинская обл., г. Магнитогорск, ул. Красноармейская, д. 4, кв. 1
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							03.07.2024 00:45:35
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=E0C0A0D63E1645399282A2BAE43F0C26" onclick="openNewWin('/MessageWindow.aspx?ID=E0C0A0D63E1645399282A2BAE43F0C26', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Рахимова Диляра Дамировна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=5749C05643948718C2E4DD9C3999E786" title="Карточка должника Рахимова Диляра Дамировна">
+								Рахимова Диляра Дамировна
+							</a>
+						</td><td style="width:26%;">
+							422770, Респ Татарстан, р-н Пестречинский, село Пестрецы, ул Строителей, д 34, кв 1
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							02.07.2024 15:26:57
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=AE542428DE7545538D2764B53630552B" onclick="openNewWin('/MessageWindow.aspx?ID=AE542428DE7545538D2764B53630552B', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Иванова Светлана Геннадьевна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=5DAC76FCE585F90A2054A8BF7F33146A" title="Карточка должника Иванова Светлана Геннадьевна">
+								Иванова Светлана Геннадьевна
+							</a>
+						</td><td style="width:26%;">
+							624264, Свердловская область, город Асбест, ул. Московская, д. 10, кв. 10
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							23.06.2024 08:13:21
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=0BC6EBEBB955424F9E273FAD7D0A429A" onclick="openNewWin('/MessageWindow.aspx?ID=0BC6EBEBB955424F9E273FAD7D0A429A', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Прокопьева Светлана Вячеславовна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=178971A40E9B0FDBF3D46B7A5F6F7D6C" title="Карточка должника Прокопьева Светлана Вячеславовна">
+								Прокопьева Светлана Вячеславовна
+							</a>
+						</td><td style="width:26%;">
+							620149, г. Екатеринбург, ул. Серафимы Дерябиной, д. 43, кв. 255
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							23.06.2024 08:03:35
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=4B3563A377434F7A822D032E182B551C" onclick="openNewWin('/MessageWindow.aspx?ID=4B3563A377434F7A822D032E182B551C', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Дейков Антон Александрович">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=DAE6F5A41EF13998E434D4685E5206E3" title="Карточка должника Дейков Антон Александрович">
+								Дейков Антон Александрович
+							</a>
+						</td><td style="width:26%;">
+							623060, Свердловская обл, Нижнесергинский р-н, пгт Дружинино, ул Железнодорожников, д 7, кв 32
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							23.06.2024 07:29:39
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=880AA52327204B4CBEB67D6E7B769C47" onclick="openNewWin('/MessageWindow.aspx?ID=880AA52327204B4CBEB67D6E7B769C47', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Зайнутдинова Гузалия Раулевна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=A3C1CBDAA076E958D4742FA64A48ACEA" title="Карточка должника Зайнутдинова Гузалия Раулевна">
+								Зайнутдинова Гузалия Раулевна
+							</a>
+						</td><td style="width:26%;">
+							623060, Свердловская обл, Нижнесергинский р-н, пгт Дружинино, ул Известковая, д 15, кв 10
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							23.06.2024 06:30:05
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=DA6CAD7074D14E05872A0C31BE33CC6D" onclick="openNewWin('/MessageWindow.aspx?ID=DA6CAD7074D14E05872A0C31BE33CC6D', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Попова Наталья Арсентьевна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=6CABBE7280E5564B0344D2657F4FBDB0" title="Карточка должника Попова Наталья Арсентьевна">
+								Попова Наталья Арсентьевна
+							</a>
+						</td><td style="width:26%;">
+							658016, Алтайский край, Тальменский р-н, ст Озёрки, ул Алтайская, д 5
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							17.06.2024 11:35:04
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=2FF90AAC48A44E989A36D80261D117D2" onclick="openNewWin('/MessageWindow.aspx?ID=2FF90AAC48A44E989A36D80261D117D2', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Полуэктов Павел Васильевич">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=5F8971192C948D6AC924CBCA95E07AAA" title="Карточка должника Полуэктов Павел Васильевич">
+								Полуэктов Павел Васильевич
+							</a>
+						</td><td style="width:26%;">
+							249191, Калужская область, Жуковский р-н, г. Жуков, ул. Чкалова, д. 34
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							13.06.2024 13:04:50
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=4CE2CC3A847F4F31BE00BC41A1510555" onclick="openNewWin('/MessageWindow.aspx?ID=4CE2CC3A847F4F31BE00BC41A1510555', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Габсатарова Римма Димовна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=B51E285B7170942A0AA427101ED6BF57" title="Карточка должника Габсатарова Римма Димовна">
+								Габсатарова Римма Димовна
+							</a>
+						</td><td style="width:26%;">
+							г. Екатеринбург, ул. Умельцев, д. 11, ком. 202-203
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							11.06.2024 16:14:02
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=93BB71CB5C7648A8BB61C7858FE23300" onclick="openNewWin('/MessageWindow.aspx?ID=93BB71CB5C7648A8BB61C7858FE23300', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Никулина Алена Федоровна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=B578010B6CF064184E743D008447334C" title="Карточка должника Никулина Алена Федоровна">
+								Никулина Алена Федоровна
+							</a>
+						</td><td style="width:26%;">
+							670023, г Улан-Удэ, тер ДНТ Весна, д 884
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							11.06.2024 07:02:07
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=5FFF3C0619F74DACB1573860C45D40AF" onclick="openNewWin('/MessageWindow.aspx?ID=5FFF3C0619F74DACB1573860C45D40AF', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Рудакова Людмила Александровна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=757BA90E1803BA583EF478B493524E71" title="Карточка должника Рудакова Людмила Александровна">
+								Рудакова Людмила Александровна
+							</a>
+						</td><td style="width:26%;">
+							624690, Свердловская область, пгт. Верхняя Синячиха, ул. Плишкина, д. 38
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							09.06.2024 08:20:55
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=C355106491504C6AAC699663B55C29EF" onclick="openNewWin('/MessageWindow.aspx?ID=C355106491504C6AAC699663B55C29EF', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Тухватуллина Ольга Юрьевна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=359CBA520567B2A9ADD46230D5E9E695" title="Карточка должника Тухватуллина Ольга Юрьевна">
+								Тухватуллина Ольга Юрьевна
+							</a>
+						</td><td style="width:26%;">
+							620091, г. Екатеринбург, ул. Корепина, д. 15/Стачек, д. 9, кв. 5
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							09.06.2024 02:26:24
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=B46701A19B8544B2929C947280F6FDAB" onclick="openNewWin('/MessageWindow.aspx?ID=B46701A19B8544B2929C947280F6FDAB', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Габсатарова Римма Димовна">
+								Сообщение о результатах торгов (отменено)
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=B51E285B7170942A0AA427101ED6BF57" title="Карточка должника Габсатарова Римма Димовна">
+								Габсатарова Римма Димовна
+							</a>
+						</td><td style="width:26%;">
+							г. Екатеринбург, ул. Умельцев, д. 11, ком. 202-203
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							04.06.2024 15:40:50
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=7121DC85F92F454CB40B9D860AD59217" onclick="openNewWin('/MessageWindow.aspx?ID=7121DC85F92F454CB40B9D860AD59217', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Пятыгин Денис Сергеевич">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=66B07D6BD2B89D2ACC84140E2130A884" title="Карточка должника Пятыгин Денис Сергеевич">
+								Пятыгин Денис Сергеевич
+							</a>
+						</td><td style="width:26%;">
+							624601, Свердловская обл., г. Алапаевск, ул. Братьев Останиных, дом 26, кв. 88
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							03.06.2024 02:16:49
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=2A336D6B4C9E4267969881118C7325EA" onclick="openNewWin('/MessageWindow.aspx?ID=2A336D6B4C9E4267969881118C7325EA', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Павлов Никита Сергеевич">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=B7491D42BDD0A6DBD2146E8A90C03684" title="Карточка должника Павлов Никита Сергеевич">
+								Павлов Никита Сергеевич
+							</a>
+						</td><td style="width:26%;">
+							143904, Московская обл, г Балашиха, ул Молодежная, д 4, кв 13
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							28.05.2024 00:25:44
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=4D13A38E8B034CE894E1AABF57331F40" onclick="openNewWin('/MessageWindow.aspx?ID=4D13A38E8B034CE894E1AABF57331F40', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Ладыгин Андрей Александрович">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=C685A090EB8A7948C1F4C47D1F2FCCFE" title="Карточка должника Ладыгин Андрей Александрович">
+								Ладыгин Андрей Александрович
+							</a>
+						</td><td style="width:26%;">
+							426077, УР, г Ижевск, ул. Красноармейская 88- 162
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							27.05.2024 10:15:34
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=B926B242BFDE48738D40DCAFD67F7D86" onclick="openNewWin('/MessageWindow.aspx?ID=B926B242BFDE48738D40DCAFD67F7D86', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Шмелёв Иван Валентинович">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=EA9595B0C4257F39B854B179014ADFE9" title="Карточка должника Шмелёв Иван Валентинович">
+								Шмелёв Иван Валентинович
+							</a>
+						</td><td style="width:26%;">
+							457400, Челябинская обл, село Агаповка, ул Первомайская, д 35, кв 4
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							25.05.2024 18:14:16
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=9868D0F95338418BB00C95D555F85B3A" onclick="openNewWin('/MessageWindow.aspx?ID=9868D0F95338418BB00C95D555F85B3A', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Филиппов Александр Юрьевич">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=8A658C7C9006EA5BDF84FD6AE54E7DD2" title="Карточка должника Филиппов Александр Юрьевич">
+								Филиппов Александр Юрьевич
+							</a>
+						</td><td style="width:26%;">
+							623700, Свердловская обл, г Березовский, ул Театральная, д 2/2, кв 20
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							25.05.2024 17:56:24
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=0B931AA40B34431487FF2BF528F00846" onclick="openNewWin('/MessageWindow.aspx?ID=0B931AA40B34431487FF2BF528F00846', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Абийров Мухамадризо Джавбасович">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=0CA11FA3D03E102A61E4F6181E4A7A33" title="Карточка должника Абийров Мухамадризо Джавбасович">
+								Абийров Мухамадризо Джавбасович
+							</a>
+						</td><td style="width:26%;">
+							620090, г Екатеринбург, ул Минометчиков, д 40, кв 19
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							25.05.2024 17:17:58
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=0FB0BADCCC544AD3A697D54797CEC037" onclick="openNewWin('/MessageWindow.aspx?ID=0FB0BADCCC544AD3A697D54797CEC037', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Атмайкина Людмила Николаевна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=D3705F77FA19981BC9D4B5114178C7A3" title="Карточка должника Атмайкина Людмила Николаевна">
+								Атмайкина Людмила Николаевна
+							</a>
+						</td><td style="width:26%;">
+							620016, г Екатеринбург, поселок Совхозный, ул Предельная, д 42
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							25.05.2024 17:02:44
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=601C8E04B1B7420C844A087BD190EC86" onclick="openNewWin('/MessageWindow.aspx?ID=601C8E04B1B7420C844A087BD190EC86', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Мидюкина Нина Николаевна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=C9BBFB721FDEF0297D74D53943B1506B" title="Карточка должника Мидюкина Нина Николаевна">
+								Мидюкина Нина Николаевна
+							</a>
+						</td><td style="width:26%;">
+							433460, Ульяновская обл, рп Старая Майна, ул Волжская, двлд 104
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							25.05.2024 15:48:24
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=BDC03F7588D24021AAB85ADEBF09177B" onclick="openNewWin('/MessageWindow.aspx?ID=BDC03F7588D24021AAB85ADEBF09177B', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Шмелёв Иван Валентинович">
+								Сообщение о результатах торгов (отменено)
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=EA9595B0C4257F39B854B179014ADFE9" title="Карточка должника Шмелёв Иван Валентинович">
+								Шмелёв Иван Валентинович
+							</a>
+						</td><td style="width:26%;">
+							457400, Челябинская обл, село Агаповка, ул Первомайская, д 35, кв 4
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							25.05.2024 15:13:44
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=F80B388FD62F4841B91282C987EB8B6A" onclick="openNewWin('/MessageWindow.aspx?ID=F80B388FD62F4841B91282C987EB8B6A', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Калошин Владимир Николаевич">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=4FE4321F3AE0D0792DE4DDF2D95D809B" title="Карточка должника Калошин Владимир Николаевич">
+								Калошин Владимир Николаевич
+							</a>
+						</td><td style="width:26%;">
+							454108, г Челябинск, ул Пограничная, д 32, кв 286
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							23.05.2024 07:30:52
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=38BE00A3066A4E82BF9F5E86EA872223" onclick="openNewWin('/MessageWindow.aspx?ID=38BE00A3066A4E82BF9F5E86EA872223', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Большаков Андрей Анатольевич">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=6447FC92CE26CDBA83945B1E7675B5D5" title="Карточка должника Большаков Андрей Анатольевич">
+								Большаков Андрей Анатольевич
+							</a>
+						</td><td style="width:26%;">
+							625022, г Тюмень, ул Газовиков, д 33, кв 79
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							23.05.2024 06:22:58
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=A8F8AC1067F04574A65FBAB71F4E0F77" onclick="openNewWin('/MessageWindow.aspx?ID=A8F8AC1067F04574A65FBAB71F4E0F77', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Кукарская Оксана Борисовна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=7A0067B8FC78DBEA7F04D000E1415396" title="Карточка должника Кукарская Оксана Борисовна">
+								Кукарская Оксана Борисовна
+							</a>
+						</td><td style="width:26%;">
+							624965, Свердловская обл, Серовский р-н, село Кошай, ул Лесная, д 1, кв 1
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							20.05.2024 16:21:24
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=B7F1F742E1B54FE798D167333241E866" onclick="openNewWin('/MessageWindow.aspx?ID=B7F1F742E1B54FE798D167333241E866', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Гадршина Алсу Кавсаровна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=9029D7F6CA372688E6C4606C1E29A585" title="Карточка должника Гадршина Алсу Кавсаровна">
+								Гадршина Алсу Кавсаровна
+							</a>
+						</td><td style="width:26%;">
+							422230, Респ Татарстан, г Агрыз, ул Чапаева, д 130
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							20.05.2024 15:33:59
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=5991F205AA494FE0AA8D820F9A4A70BC" onclick="openNewWin('/MessageWindow.aspx?ID=5991F205AA494FE0AA8D820F9A4A70BC', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Игенбаева Лида Фарвазовна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=CEDB063362772698DD54B88FBB940C1A" title="Карточка должника Игенбаева Лида Фарвазовна">
+								Игенбаева Лида Фарвазовна
+							</a>
+						</td><td style="width:26%;">
+							456203, Челябинская обл, г Златоуст, ул им Риты Сергеевой, д 3, кв 11
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							20.05.2024 14:49:07
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=136C56433DBF4823A15263FE5D4A9D4F" onclick="openNewWin('/MessageWindow.aspx?ID=136C56433DBF4823A15263FE5D4A9D4F', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Киселев Сергей Андреевич">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=8BE61D7A2C8CE8EB2744345DA70FEF85" title="Карточка должника Киселев Сергей Андреевич">
+								Киселев Сергей Андреевич
+							</a>
+						</td><td style="width:26%;">
+							624162, Свердловская обл, г Верхний Тагил, ул Маяковского, д 31, кв 100
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							20.05.2024 14:16:58
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=CC50B01D18D54DED9B3322ADC3336DCC" onclick="openNewWin('/MessageWindow.aspx?ID=CC50B01D18D54DED9B3322ADC3336DCC', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Новикова Татьяна Владимировна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=841F758D30AAF79B12C49914F192F5DE" title="Карточка должника Новикова Татьяна Владимировна">
+								Новикова Татьяна Владимировна
+							</a>
+						</td><td style="width:26%;">
+							Московская обл., Наро-Фоминский р-н, г. Наро-Фоминск, ул. М. Куркоткина, д. 8, кв. 178
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							20.05.2024 14:01:17
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=21A53A6386B84BE2A28E756EAA4D0558" onclick="openNewWin('/MessageWindow.aspx?ID=21A53A6386B84BE2A28E756EAA4D0558', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Иванова Светлана Геннадьевна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=5DAC76FCE585F90A2054A8BF7F33146A" title="Карточка должника Иванова Светлана Геннадьевна">
+								Иванова Светлана Геннадьевна
+							</a>
+						</td><td style="width:26%;">
+							624264, Свердловская область, город Асбест, ул. Московская, д. 10, кв. 10
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							20.05.2024 13:36:45
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=2F7E9D8DD40E46AD944C27AB06DA566A" onclick="openNewWin('/MessageWindow.aspx?ID=2F7E9D8DD40E46AD944C27AB06DA566A', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Климова Елена Александровна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=0CDE185B51269DE88D245A477F710874" title="Карточка должника Климова Елена Александровна">
+								Климова Елена Александровна
+							</a>
+						</td><td style="width:26%;">
+							623151, Свердловская обл, г Первоуральск, поселок Билимбай, ул Лермонтова, д 9, кв 11
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							20.05.2024 13:27:57
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=7BACBAE583D6445BBC0AF1AE415C8E1E" onclick="openNewWin('/MessageWindow.aspx?ID=7BACBAE583D6445BBC0AF1AE415C8E1E', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Шукуров Сайяр Вахид оглы">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=588AAEC8366BBB781C843A5AC4A25A24" title="Карточка должника Шукуров Сайяр Вахид оглы">
+								Шукуров Сайяр Вахид оглы
+							</a>
+						</td><td style="width:26%;">
+							121353, г. Москва, ул. Беловежская, д. 21, кв. 215
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							14.05.2024 19:13:07
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=9AF54B7F4AC2493BB860765AD65EAEE4" onclick="openNewWin('/MessageWindow.aspx?ID=9AF54B7F4AC2493BB860765AD65EAEE4', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Щербакова Любовь Александровна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=F78DBF01A6F2A1D9C1349BD9692BC20D" title="Карточка должника Щербакова Любовь Александровна">
+								Щербакова Любовь Александровна
+							</a>
+						</td><td style="width:26%;">
+							624137, Свердловская обл., г. Новоуральск, ул. Советская, д. 11, кв. 67
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							14.05.2024 16:35:22
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=889F14CBBFE1466F91DF40E28597355C" onclick="openNewWin('/MessageWindow.aspx?ID=889F14CBBFE1466F91DF40E28597355C', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Кочнева Анастасия Вячеславовна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=BAC4F73DCE99B0B9F7741030B69C918B" title="Карточка должника Кочнева Анастасия Вячеславовна">
+								Кочнева Анастасия Вячеславовна
+							</a>
+						</td><td style="width:26%;">
+							623487, Свердловская область, Каменский район, д. Давыдова, ул. Набережная, д. 7
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							14.05.2024 14:18:19
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=27B7E3BD7A324DB9AE786D5BE44D4DE8" onclick="openNewWin('/MessageWindow.aspx?ID=27B7E3BD7A324DB9AE786D5BE44D4DE8', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Егорова Светлана Владимировна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=D94776050E9F78288A44B2494CF893F0" title="Карточка должника Егорова Светлана Владимировна">
+								Егорова Светлана Владимировна
+							</a>
+						</td><td style="width:26%;">
+							624132, Свердловская обл., г. Новоуральск, ул. Победы, д. 32В, кв. 64
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							14.05.2024 14:01:17
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=E430556720C344CD9EBE2447072FE350" onclick="openNewWin('/MessageWindow.aspx?ID=E430556720C344CD9EBE2447072FE350', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Гильмутдинов Азамат Талгатович">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=74C16D4175EE3AEB6AB45493E65EE789" title="Карточка должника Гильмутдинов Азамат Талгатович">
+								Гильмутдинов Азамат Талгатович
+							</a>
+						</td><td style="width:26%;">
+							420127, г Казань, ул Дементьева, д 29А, кв 18
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							14.05.2024 13:33:48
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=CFBBC456EB1B4824B9294E54DC015581" onclick="openNewWin('/MessageWindow.aspx?ID=CFBBC456EB1B4824B9294E54DC015581', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Гатауллина Юлия Олеговна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=A0590AB8879DFE0B5534421367DF3718" title="Карточка должника Гатауллина Юлия Олеговна">
+								Гатауллина Юлия Олеговна
+							</a>
+						</td><td style="width:26%;">
+							453501, Респ Башкортостан, г Белорецк, ул Куйбышева, д 25
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr>
+			<td align="center" style="width:12%;">
+							14.05.2024 07:02:57
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=6BC478F3546F47349DBE8F72F09C6879" onclick="openNewWin('/MessageWindow.aspx?ID=6BC478F3546F47349DBE8F72F09C6879', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Большаков Андрей Анатольевич">
+								Сообщение о результатах торгов (отменено)
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=6447FC92CE26CDBA83945B1E7675B5D5" title="Карточка должника Большаков Андрей Анатольевич">
+								Большаков Андрей Анатольевич
+							</a>
+						</td><td style="width:26%;">
+							625022, г Тюмень, ул Газовиков, д 33, кв 79
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="row">
+			<td align="center" style="width:12%;">
+							14.05.2024 06:14:55
+						</td><td style="width:25%;">
+							<a href="/MessageWindow.aspx?ID=250E94478A8E4B1583D754EB9BA2D08C" onclick="openNewWin('/MessageWindow.aspx?ID=250E94478A8E4B1583D754EB9BA2D08C', 'Сообщение', 'yes', '1000', '600'); return false" title="Сообщение о банкротстве Рожнова Татьяна Васильевна">
+								Сообщение о результатах торгов
+							</a>
+						</td><td style="width:22%;">
+							<a href="/PrivatePersonCard.aspx?ID=254F2029CE7F8E293DA4A46EDC2EBBE9" title="Карточка должника Рожнова Татьяна Васильевна">
+								Рожнова Татьяна Васильевна
+							</a>
+						</td><td style="width:26%;">
+							432066, г Ульяновск, ул Ефремова, д 129, кв 75
+						</td><td style="width:15%;">
+							<a href="/ArbitrManagerCard.aspx?ID=7bbf3ba6-2688-4d60-923d-285fab12eb28" title="Карточка арбитражного управляющего Рыбников Александр Андреевич">Рыбников Александр Андреевич</a>
+						</td>
+		</tr><tr class="pager" align="right">
+			<td colspan="5"><table>
+				<tr>
+					<td><span>1</span></td><td><a href="javascript:__doPostBack(&#39;ctl00$cphBody$gvMessages&#39;,&#39;Page$2&#39;)">2</a></td><td><a href="javascript:__doPostBack(&#39;ctl00$cphBody$gvMessages&#39;,&#39;Page$3&#39;)">3</a></td><td><a href="javascript:__doPostBack(&#39;ctl00$cphBody$gvMessages&#39;,&#39;Page$4&#39;)">4</a></td><td><a href="javascript:__doPostBack(&#39;ctl00$cphBody$gvMessages&#39;,&#39;Page$5&#39;)">5</a></td><td><a href="javascript:__doPostBack(&#39;ctl00$cphBody$gvMessages&#39;,&#39;Page$6&#39;)">6</a></td><td><a href="javascript:__doPostBack(&#39;ctl00$cphBody$gvMessages&#39;,&#39;Page$7&#39;)">7</a></td><td><a href="javascript:__doPostBack(&#39;ctl00$cphBody$gvMessages&#39;,&#39;Page$8&#39;)">8</a></td><td><a href="javascript:__doPostBack(&#39;ctl00$cphBody$gvMessages&#39;,&#39;Page$9&#39;)">9</a></td><td><a href="javascript:__doPostBack(&#39;ctl00$cphBody$gvMessages&#39;,&#39;Page$10&#39;)">10</a></td>
+				</tr>
+			</table></td>
+		</tr>
+	</table>
+</div>
+			<table id="ctl00_cphBody_PaggingAdvInfo1_tblPaggingAdvInfo" style="position: relative; bottom: 25px">
+	<tr>
+		<td id="ctl00_cphBody_PaggingAdvInfo1_tdPaggingAdvInfo" width="50%" class="all_page">
             Показано с
             1
             по
-            1
+            50
             (Всего:
-            1)<br />
+            500)<br />
         </td>
-						<td id="ctl00_BodyPlaceHolder_SearchArbitrManager1_PaggingAdvInfo1_trLinkToAllMessages" width="50%" class="all_page" style="display: none;">
+		<td id="ctl00_cphBody_PaggingAdvInfo1_trLinkToAllMessages" width="50%" class="all_page" style="display: none;">
             <a style="margin-left: 5px;" href="/Messages.aspx">Перейти к разделу
                 Сообщения</a>
         </td>
-					</tr>
-				</table>
-				
-
-	
-			</div>
-<script language="javascript" type="text/javascript">
-	function ClearArmForm() {
-		document.getElementById("ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro_hfSelectedType").value = "";
-		document.getElementById("ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro_tbSelectedText").value = "";
-		document.getElementById("ctl00_BodyPlaceHolder_SearchArbitrManager1_msSro_hfSelectedValue").value = "";
-		document.getElementById("ctl00_BodyPlaceHolder_SearchArbitrManager1_tbLastName").value = "";
-		document.getElementById("ctl00_BodyPlaceHolder_SearchArbitrManager1_tbFirstName").value = "";
-		document.getElementById("ctl00_BodyPlaceHolder_SearchArbitrManager1_tbMiddleName").value = "";
-		document.getElementById("ctl00_BodyPlaceHolder_SearchArbitrManager1_tbRegNumFrs").value = "";
-		document.getElementById("ctl00_BodyPlaceHolder_SearchArbitrManager1_chbWithPublicatedMessages").checked = "";
-	}
-
-	function ClickAM() {
-		var controls = $("#" + "ctl00_BodyPlaceHolder_SearchArbitrManager1_pArbitrManager").find("input");
-
-		$.each(controls, function () {
-			this.value = this.value.replace(new RegExp("<", "g"), '');
-		});
-	}
-</script>
-
-						
-		</div>
-				
-	</div><div id="ctl00_BodyPlaceHolder_RadPageView2" class="rmpHiddenView">
-		
-					<div id="ctl00_BodyPlaceHolder_upPersons">
-			
-							
-
-<table class="filter">
-    <tr>
-        <td class="fhead"></td>
-    </tr>
-    <tr>
-        <td>
-            <div id="ctl00_BodyPlaceHolder_OrgTradeOrganizerList1_pOrgTradeOrganizerList" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;ctl00_BodyPlaceHolder_OrgTradeOrganizerList1_btnSearchOrg&#39;)">
-				
-                <table class="fforms">
-                    <tr>
-                        <td align="left" nowrap="nowrap" width="90">
-                            Наименование
-                        </td>
-                        <td nowrap="nowrap">
-                            <input name="ctl00$BodyPlaceHolder$OrgTradeOrganizerList1$tbOrgName" type="text" maxlength="512" id="ctl00_BodyPlaceHolder_OrgTradeOrganizerList1_tbOrgName" class="form" style="width:300px;" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="left" nowrap="nowrap">
-                            Адрес
-                        </td>
-                        <td nowrap="nowrap">
-                            <input name="ctl00$BodyPlaceHolder$OrgTradeOrganizerList1$tbOrgAddress" type="text" maxlength="300" id="ctl00_BodyPlaceHolder_OrgTradeOrganizerList1_tbOrgAddress" class="form" style="width:300px;" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        </td>
-                        <td>
-                            <input type="image" name="ctl00$BodyPlaceHolder$OrgTradeOrganizerList1$btnSearchOrg" id="ctl00_BodyPlaceHolder_OrgTradeOrganizerList1_btnSearchOrg" src="img/but_search.png" onclick="ClickOrgTrade();" />
-                            <img id="clearOrg" src="/img/but_clear.png" alt="Очистить"
-                                style="cursor: pointer" onclick="ClearOrgForm()" />
-                        </td>
-                    </tr>
-                </table>
-            
-			</div>
-        </td>
-    </tr>
+	</tr>
 </table>
-<div id="ctl00_BodyPlaceHolder_OrgTradeOrganizerList1_upOrgTradeOrganizerList">
-				
-        
-        <div>
 
-				</div>
-        
-    
-			</div>
 
-<script language="javascript" type="text/javascript">
-    function ClickSubmitOrg(event) {
-        var k;
-
-        if (event.which)
-            k = event.which.keyCode;
-        else
-            k = event.keyCode;
-
-        if (k == 13) {
-            document.getElementById("ctl00_BodyPlaceHolder_OrgTradeOrganizerList1_btnSearchOrg").click();
-            event.cancelBubble = true;
-            return false;
+		|0|hiddenField|__EVENTTARGET||0|hiddenField|__EVENTARGUMENT||12824|hiddenField|__VIEWSTATE|/wEPDwULLTEzMTQ2MTUzNTkPZBYCZg9kFgRmDxQrAAIUKwADDxYCHhdFbmFibGVBamF4U2tpblJlbmRlcmluZ2hkZGRkZAIDD2QWDAIDDw8WBB4LTmF2aWdhdGVVcmwFGG1haWx0bzpoZWxwQGZlZHJlc3Vycy5ydR4EVGV4dAURaGVscEBmZWRyZXN1cnMucnVkZAIED2QWAgIHDw8WAh8AaGRkAgkPDxYCHwEFH2h0dHBzOi8vZmVkcmVzdXJzLnJ1L21vbml0b3JpbmdkZAILDw8WAh8BBRhodHRwOi8vd3d3LmZlZHJlc3Vycy5ydS9kZAIYD2QWAgIBDxYCHgtfIUl0ZW1Db3VudAIHFg5mD2QWAmYPFQIVaHR0cDovL2thZC5hcmJpdHIucnUvMNCa0LDRgNGC0L7RgtC10LrQsCDQsNGA0LHQuNGC0YDQsNC20L3Ri9GFINC00LXQu2QCAQ9kFgJmDxUCQGh0dHA6Ly93d3cuZWNvbm9teS5nb3YucnUvbWluZWMvYWN0aXZpdHkvc2VjdGlvbnMvQ29ycE1hbmFnbWVudC8v0JzQuNC90Y3QutC+0L3QvtC80YDQsNC30LLQuNGC0LjRjyDQoNC+0YHRgdC40LhkAgIPZBYCZg8VAhVodHRwOi8vZWdydWwubmFsb2cucnUW0JXQk9Cg0K7QmyDQpNCd0KEg0KDQpGQCAw9kFgJmDxUCJWh0dHA6Ly90ZXN0LmZlZHJlc3Vycy5ydS9kZWZhdWx0LmFzcHgo0KLQtdGB0YLQvtCy0LDRjyDQstC10YDRgdC40Y8g0JXQpNCg0KHQkWQCBA9kFgJmDxUCHmh0dHA6Ly90ZXN0LWZhY3RzLmludGVyZmF4LnJ1LyzQotC10YHRgtC+0LLQsNGPINCy0LXRgNGB0LjRjyDQldCk0KDQodCU0K7Qm2QCBQ9kFgJmDxUCI2h0dHA6Ly9mb3J1bS1mZWRyZXN1cnMuaW50ZXJmYXgucnUvMtCk0L7RgNGD0Lwg0KTQtdC00LXRgNCw0LvRjNC90YvRhSDRgNC10LXRgdGC0YDQvtCyZAIGD2QWAmYPFQIyaHR0cDovL29sZC5iYW5rcm90LmZlZHJlc3Vycy5ydS9IZWxwL0ZBUV9FRlJTQi5wZGY00KfQsNGB0YLQviDQt9Cw0LTQsNCy0LDQtdC80YvQtSDQstC+0L/RgNC+0YHRiyAoRkFRKWQCGg9kFgQCAQ9kFgJmD2QWAgIBD2QWDgIDD2QWBmYPDxYCHwIFOdCh0L7QvtCx0YnQtdC90LjQtSDQviDRgNC10LfRg9C70YzRgtCw0YLQsNGFINGC0L7RgNCz0L7QshYCHgdvbmNsaWNrBS5PcGVuTW9kYWxXaW5kb3dfY3RsMDBfY3BoQm9keV9tZHNNZXNzYWdlVHlwZSgpZAIBDw9kFgIfBAUuT3Blbk1vZGFsV2luZG93X2N0bDAwX2NwaEJvZHlfbWRzTWVzc2FnZVR5cGUoKWQCAg8PZBYCHwQFJENsZWFyX2N0bDAwX2NwaEJvZHlfbWRzTWVzc2FnZVR5cGUoKWQCBQ9kFgICAQ9kFgICAQ8QDxYCHgtfIURhdGFCb3VuZGdkEBUbBtCS0YHQtSjQviDQstCy0LXQtNC10L3QuNC4INC90LDQsdC70Y7QtNC10L3QuNGPOdC+INCy0LLQtdC00LXQvdC40Lgg0LLQvdC10YjQvdC10LPQviDRg9C/0YDQsNCy0LvQtdC90LjRj0PQviDQstCy0LXQtNC10L3QuNC4INGE0LjQvdCw0L3RgdC+0LLQvtCz0L4g0L7Qt9C00L7RgNC+0LLQu9C10L3QuNGPM9C+INC/0YDQvtC00LvQtdC90LjQuCDRgdGA0L7QutCwINC/0YDQvtGG0LXQtNGD0YDRizPQvtCxINC40LfQvNC10L3QtdC90LjQuCDRgdGD0LTQtdCx0L3QvtCz0L4g0LDQutGC0LAt0L7QsSDQvtGC0LzQtdC90LUg0YHRg9C00LXQsdC90L7Qs9C+INCw0LrRgtCwyAHQviDQv9GA0LjQt9C90LDQvdC40Lgg0L7QsdC+0YHQvdC+0LLQsNC90L3Ri9C8INC30LDRj9Cy0LvQtdC90LjRjyDQviDQv9GA0LjQt9C90LDQvdC40Lgg0LPRgNCw0LbQtNCw0L3QuNC90LAg0LHQsNC90LrRgNC+0YLQvtC8INC4INCy0LLQtdC00LXQvdC40Lgg0YDQtdGB0YLRgNGD0LrRgtGD0YDQuNC30LDRhtC40Lgg0LXQs9C+INC00L7Qu9Cz0L7Qsn3QviDQv9GA0LjQt9C90LDQvdC40Lgg0LTQvtC70LbQvdC40LrQsCDQsdCw0L3QutGA0L7RgtC+0Lwg0Lgg0L7RgtC60YDRi9GC0LjQuCDQutC+0L3QutGD0YDRgdC90L7Qs9C+INC/0YDQvtC40LfQstC+0LTRgdGC0LLQsEvQvtCxINC+0YLQutCw0LfQtSDQsiDQv9GA0LjQt9C90LDQvdC40Lgg0LTQvtC70LbQvdC40LrQsCDQsdCw0L3QutGA0L7RgtC+0LyaAdC+INC/0YDQuNC80LXQvdC10L3QuNC4INC/0YDQuCDQsdCw0L3QutGA0L7RgtGB0YLQstC1INC00L7Qu9C20L3QuNC60LAg0L/RgNCw0LLQuNC7INC/0LDRgNCw0LPRgNCw0YTQsCDCq9CR0LDQvdC60YDQvtGC0YHRgtCy0L4g0LfQsNGB0YLRgNC+0LnRidC40LrQvtCywrtr0L4g0L/QtdGA0LXQtNCw0YfQtSDQtNC10LvQsCDQvdCwINGA0LDRgdGB0LzQvtGC0YDQtdC90LjQtSDQtNGA0YPQs9C+0LPQviDQsNGA0LHQuNGC0YDQsNC20L3QvtCz0L4g0YHRg9C00LBp0L7QsSDRg9GC0LLQtdGA0LbQtNC10L3QuNC4INC/0LvQsNC90LAg0YDQtdGB0YLRgNGD0LrRgtGD0YDQuNC30LDRhtC40Lgg0LTQvtC70LPQvtCyINCz0YDQsNC20LTQsNC90LjQvdCwWtC+INC30LDQstC10YDRiNC10L3QuNC4INGA0LXRgdGC0YDRg9C60YLRg9GA0LjQt9Cw0YbQuNC4INC00L7Qu9Cz0L7QsiDQs9GA0LDQttC00LDQvdC40L3QsI4B0L4g0L/RgNC40LfQvdCw0L3QuNC4INCz0YDQsNC20LTQsNC90LjQvdCwINCx0LDQvdC60YDQvtGC0L7QvCDQuCDQstCy0LXQtNC10L3QuNC4INGA0LXQsNC70LjQt9Cw0YbQuNC4INC40LzRg9GJ0LXRgdGC0LLQsCDQs9GA0LDQttC00LDQvdC40L3QsKYB0L4g0L3QtdC/0YDQuNC80LXQvdC10L3QuNC4INCyINC+0YLQvdC+0YjQtdC90LjQuCDQs9GA0LDQttC00LDQvdC40L3QsCDQv9GA0LDQstC40LvQsCDQvtCxINC+0YHQstC+0LHQvtC20LTQtdC90LjQuCDQvtGCINC40YHQv9C+0LvQvdC10L3QuNGPINC+0LHRj9C30LDRgtC10LvRjNGB0YLQslTQviDQt9Cw0LLQtdGA0YjQtdC90LjQuCDRgNC10LDQu9C40LfQsNGG0LjQuCDQuNC80YPRidC10YHRgtCy0LAg0LPRgNCw0LbQtNCw0L3QuNC90LBH0L4g0LfQsNCy0LXRgNGI0LXQvdC40Lgg0LrQvtC90LrRg9GA0YHQvdC+0LPQviDQv9GA0L7QuNC30LLQvtC00YHRgtCy0LBA0L4g0L/RgNC10LrRgNCw0YnQtdC90LjQuCDQv9GA0L7QuNC30LLQvtC00YHRgtCy0LAg0L/QviDQtNC10LvRg4MB0L4g0LLQvtC30L7QsdC90L7QstC70LXQvdC40Lgg0L/RgNC+0LjQt9Cy0L7QtNGB0YLQstCwINC/0L4g0LTQtdC70YMg0L4g0L3QtdGB0L7RgdGC0L7Rj9GC0LXQu9GM0L3QvtGB0YLQuCAo0LHQsNC90LrRgNC+0YLRgdGC0LLQtSlN0L7QsSDRg9GC0LLQtdGA0LbQtNC10L3QuNC4INCw0YDQsdC40YLRgNCw0LbQvdC+0LPQviDRg9C/0YDQsNCy0LvRj9GO0YnQtdCz0L5t0L7QsSDQvtGB0LLQvtCx0L7QttC00LXQvdC40Lgg0LjQu9C4INC+0YLRgdGC0YDQsNC90LXQvdC40Lgg0LDRgNCx0LjRgtGA0LDQttC90L7Qs9C+INGD0L/RgNCw0LLQu9GP0Y7RidC10LPQvogB0L4g0L/RgNC40LfQvdCw0L3QuNC4INC00LXQudGB0YLQstC40LkgKNCx0LXQt9C00LXQudGB0YLQstC40LkpINCw0YDQsdC40YLRgNCw0LbQvdC+0LPQviDRg9C/0YDQsNCy0LvRj9GO0YnQtdCz0L4g0L3QtdC30LDQutC+0L3QvdGL0LzQuNUB0L4g0LLQt9GL0YHQutCw0L3QuNC4INGBINCw0YDQsdC40YLRgNCw0LbQvdC+0LPQviDRg9C/0YDQsNCy0LvRj9GO0YnQtdCz0L4g0YPQsdGL0YLQutC+0LIg0LIg0YHQstGP0LfQuCDRgSDQvdC10LjRgdC/0L7Qu9C90LXQvdC40LXQvCDQuNC70Lgg0L3QtdC90LDQtNC70LXQttCw0YnQuNC8INC40YHQv9C+0LvQvdC10L3QuNC10Lwg0L7QsdGP0LfQsNC90L3QvtGB0YLQtdC5nQHQvtCxINGD0LTQvtCy0LvQtdGC0LLQvtGA0LXQvdC40Lgg0LfQsNGP0LLQu9C10L3QuNC5INGC0YDQtdGC0YzQuNGFINC70LjRhiDQviDQvdCw0LzQtdGA0LXQvdC40Lgg0L/QvtCz0LDRgdC40YLRjCDQvtCx0Y/Qt9Cw0YLQtdC70YzRgdGC0LLQsCDQtNC+0LvQttC90LjQutCwJtCU0YDRg9Cz0LjQtSDRgdGD0LTQtdCx0L3Ri9C1INCw0LrRgtGLJNCU0YDRg9Cz0LjQtcKg0L7Qv9GA0LXQtNC10LvQtdC90LjRjxUbAAIxMQExATkCMjkCMzACMzECMTgBNwIxMAIyNgIyNwIyMAIyMQIxOQIyNAIyNQIyOAE4ATMBNAE2AjIyAjIzAjE3AjEyAjE2FCsDG2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2RkAgcPZBYIZg8PFgIfAgU20KDRi9Cx0L3QuNC60L7QsiDQkNC70LXQutGB0LDQvdC00YAg0JDQvdC00YDQtdC10LLQuNGHFgIfBAUsT3Blbk1vZGFsV2luZG93X2N0bDAwX2NwaEJvZHlfbWRzUHVibGlzaGVyKClkAgEPD2QWAh8EBSxPcGVuTW9kYWxXaW5kb3dfY3RsMDBfY3BoQm9keV9tZHNQdWJsaXNoZXIoKWQCAg8PZBYCHwQFIkNsZWFyX2N0bDAwX2NwaEJvZHlfbWRzUHVibGlzaGVyKClkAgUPFQEkL0RlYnRvckxpc3RXaW5kb3cuYXNweD9pZFR5cGU9Y29tbW9uZAILD2QWAmYPEA8WAh8FZ2QQFVwAG9CQ0LvRgtCw0LnRgdC60LjQuSDQutGA0LDQuR/QkNC80YPRgNGB0LrQsNGPINC+0LHQu9Cw0YHRgtGMKdCQ0YDRhdCw0L3Qs9C10LvRjNGB0LrQsNGPINC+0LHQu9Cw0YHRgtGMJ9CQ0YHRgtGA0LDRhdCw0L3RgdC60LDRjyDQvtCx0LvQsNGB0YLRjCfQkdC10LvQs9C+0YDQvtC00YHQutCw0Y8g0L7QsdC70LDRgdGC0Ywf0JHRgNGP0L3RgdC60LDRjyDQvtCx0LvQsNGB0YLRjCfQktC70LDQtNC40LzQuNGA0YHQutCw0Y8g0L7QsdC70LDRgdGC0Ywp0JLQvtC70LPQvtCz0YDQsNC00YHQutCw0Y8g0L7QsdC70LDRgdGC0Ywl0JLQvtC70L7Qs9C+0LTRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCXQktC+0YDQvtC90LXQttGB0LrQsNGPINC+0LHQu9Cw0YHRgtGMENCzLiDQnNC+0YHQutCy0LAh0LMuINCh0LDQvdC60YIt0J/QtdGC0LXRgNCx0YPRgNCzGtCzLiDQodC10LLQsNGB0YLQvtC/0L7Qu9GMNtCU0L7QvdC10YbQutCw0Y8g0L3QsNGA0L7QtNC90LDRjyDRgNC10YHQv9GD0LHQu9C40LrQsDbQldCy0YDQtdC50YHQutCw0Y8g0LDQstGC0L7QvdC+0LzQvdCw0Y8g0L7QsdC70LDRgdGC0Ywj0JfQsNCx0LDQudC60LDQu9GM0YHQutC40Lkg0LrRgNCw0Lkl0JfQsNC/0L7RgNC+0LbRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCPQmNCy0LDQvdC+0LLRgdC60LDRjyDQvtCx0LvQsNGB0YLRjEHQmNC90YvQtSDRgtC10YDRgNC40YLQvtGA0LjQuCwg0LLQutC70Y7Rh9Cw0Y8g0LMu0JHQsNC50LrQvtC90YPRgCHQmNGA0LrRg9GC0YHQutCw0Y8g0L7QsdC70LDRgdGC0Yw80JrQsNCx0LDRgNC00LjQvdC+LdCR0LDQu9C60LDRgNGB0LrQsNGPINCg0LXRgdC/0YPQsdC70LjQutCwLdCa0LDQu9C40L3QuNC90LPRgNCw0LTRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCHQmtCw0LvRg9C20YHQutCw0Y8g0L7QsdC70LDRgdGC0Ywd0JrQsNC80YfQsNGC0YHQutC40Lkg0LrRgNCw0Lk80JrQsNGA0LDRh9Cw0LXQstC+LdCn0LXRgNC60LXRgdGB0LrQsNGPINCg0LXRgdC/0YPQsdC70LjQutCwJdCa0LXQvNC10YDQvtCy0YHQutCw0Y8g0L7QsdC70LDRgdGC0Ywh0JrQuNGA0L7QstGB0LrQsNGPINC+0LHQu9Cw0YHRgtGMJdCa0L7RgdGC0YDQvtC80YHQutCw0Y8g0L7QsdC70LDRgdGC0Ywj0JrRgNCw0YHQvdC+0LTQsNGA0YHQutC40Lkg0LrRgNCw0Lkh0JrRgNCw0YHQvdC+0Y/RgNGB0LrQuNC5INC60YDQsNC5I9Ca0YPRgNCz0LDQvdGB0LrQsNGPINC+0LHQu9Cw0YHRgtGMHdCa0YPRgNGB0LrQsNGPINC+0LHQu9Cw0YHRgtGMKdCb0LXQvdC40L3Qs9GA0LDQtNGB0LrQsNGPINC+0LHQu9Cw0YHRgtGMH9Cb0LjQv9C10YbQutCw0Y8g0L7QsdC70LDRgdGC0Yw40JvRg9Cz0LDQvdGB0LrQsNGPINC90LDRgNC+0LTQvdCw0Y8g0YDQtdGB0L/Rg9Cx0LvQuNC60LAl0JzQsNCz0LDQtNCw0L3RgdC60LDRjyDQvtCx0LvQsNGB0YLRjCPQnNC+0YHQutC+0LLRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCPQnNGD0YDQvNCw0L3RgdC60LDRjyDQvtCx0LvQsNGB0YLRjDDQndC10L3QtdGG0LrQuNC5INCw0LLRgtC+0L3QvtC80L3Ri9C5INC+0LrRgNGD0LMp0J3QuNC20LXQs9C+0YDQvtC00YHQutCw0Y8g0L7QsdC70LDRgdGC0Ywn0J3QvtCy0LPQvtGA0L7QtNGB0LrQsNGPINC+0LHQu9Cw0YHRgtGMKdCd0L7QstC+0YHQuNCx0LjRgNGB0LrQsNGPINC+0LHQu9Cw0YHRgtGMG9Ce0LzRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCfQntGA0LXQvdCx0YPRgNCz0YHQutCw0Y8g0L7QsdC70LDRgdGC0Ywh0J7RgNC70L7QstGB0LrQsNGPINC+0LHQu9Cw0YHRgtGMI9Cf0LXQvdC30LXQvdGB0LrQsNGPINC+0LHQu9Cw0YHRgtGMGdCf0LXRgNC80YHQutC40Lkg0LrRgNCw0Lkd0J/RgNC40LzQvtGA0YHQutC40Lkg0LrRgNCw0Lkh0J/RgdC60L7QstGB0LrQsNGPINC+0LHQu9Cw0YHRgtGMIdCg0LXRgdC/0YPQsdC70LjQutCwINCQ0LTRi9Cz0LXRjx/QoNC10YHQv9GD0LHQu9C40LrQsCDQkNC70YLQsNC5LdCg0LXRgdC/0YPQsdC70LjQutCwINCR0LDRiNC60L7RgNGC0L7RgdGC0LDQvSPQoNC10YHQv9GD0LHQu9C40LrQsCDQkdGD0YDRj9GC0LjRjyXQoNC10YHQv9GD0LHQu9C40LrQsCDQlNCw0LPQtdGB0YLQsNC9J9Cg0LXRgdC/0YPQsdC70LjQutCwINCY0L3Qs9GD0YjQtdGC0LjRjyXQoNC10YHQv9GD0LHQu9C40LrQsCDQmtCw0LvQvNGL0LrQuNGPI9Cg0LXRgdC/0YPQsdC70LjQutCwINCa0LDRgNC10LvQuNGPHdCg0LXRgdC/0YPQsdC70LjQutCwINCa0L7QvNC4HdCg0LXRgdC/0YPQsdC70LjQutCwINCa0YDRi9C8JNCg0LXRgdC/0YPQsdC70LjQutCwINCc0LDRgNC40Lkg0K3QuyXQoNC10YHQv9GD0LHQu9C40LrQsCDQnNC+0YDQtNC+0LLQuNGPLNCg0LXRgdC/0YPQsdC70LjQutCwINCh0LDRhdCwICjQr9C60YPRgtC40Y8pQdCg0LXRgdC/0YPQsdC70LjQutCwINCh0LXQstC10YDQvdCw0Y8g0J7RgdC10YLQuNGPIC0g0JDQu9Cw0L3QuNGPJ9Cg0LXRgdC/0YPQsdC70LjQutCwINCi0LDRgtCw0YDRgdGC0LDQvR3QoNC10YHQv9GD0LHQu9C40LrQsCDQotGL0LLQsCPQoNC10YHQv9GD0LHQu9C40LrQsCDQpdCw0LrQsNGB0LjRjyPQoNC+0YHRgtC+0LLRgdC60LDRjyDQvtCx0LvQsNGB0YLRjCHQoNGP0LfQsNC90YHQutCw0Y8g0L7QsdC70LDRgdGC0Ywh0KHQsNC80LDRgNGB0LrQsNGPINC+0LHQu9Cw0YHRgtGMJdCh0LDRgNCw0YLQvtCy0YHQutCw0Y8g0L7QsdC70LDRgdGC0Ywl0KHQsNGF0LDQu9C40L3RgdC60LDRjyDQvtCx0LvQsNGB0YLRjCfQodCy0LXRgNC00LvQvtCy0YHQutCw0Y8g0L7QsdC70LDRgdGC0Ywj0KHQvNC+0LvQtdC90YHQutCw0Y8g0L7QsdC70LDRgdGC0Ywl0KHRgtCw0LLRgNC+0L/QvtC70YzRgdC60LjQuSDQutGA0LDQuSPQotCw0LzQsdC+0LLRgdC60LDRjyDQvtCx0LvQsNGB0YLRjB/QotCy0LXRgNGB0LrQsNGPINC+0LHQu9Cw0YHRgtGMHdCi0L7QvNGB0LrQsNGPINC+0LHQu9Cw0YHRgtGMH9Ci0YPQu9GM0YHQutCw0Y8g0L7QsdC70LDRgdGC0Ywh0KLRjtC80LXQvdGB0LrQsNGPINC+0LHQu9Cw0YHRgtGMKdCj0LTQvNGD0YDRgtGB0LrQsNGPINCg0LXRgdC/0YPQsdC70LjQutCwJdCj0LvRjNGP0L3QvtCy0YHQutCw0Y8g0L7QsdC70LDRgdGC0Ywf0KXQsNCx0LDRgNC+0LLRgdC60LjQuSDQutGA0LDQuUrQpdCw0L3RgtGLLdCc0LDQvdGB0LjQudGB0LrQuNC5INCw0LLRgtC+0L3QvtC80L3Ri9C5INC+0LrRgNGD0LMgLSDQrtCz0YDQsCPQpdC10YDRgdC+0L3RgdC60LDRjyDQvtCx0LvQsNGB0YLRjCXQp9C10LvRj9Cx0LjQvdGB0LrQsNGPINC+0LHQu9Cw0YHRgtGMJ9Cn0LXRh9C10L3RgdC60LDRjyDQoNC10YHQv9GD0LHQu9C40LrQsCHQp9C40YLQuNC90YHQutCw0Y8g0L7QsdC70LDRgdGC0Yw40KfRg9Cy0LDRiNGB0LrQsNGPINCg0LXRgdC/0YPQsdC70LjQutCwIC0g0KfRg9Cy0LDRiNC40Y8y0KfRg9C60L7RgtGB0LrQuNC5INCw0LLRgtC+0L3QvtC80L3Ri9C5INC+0LrRgNGD0LM70K/QvNCw0LvQvi3QndC10L3QtdGG0LrQuNC5INCw0LLRgtC+0L3QvtC80L3Ri9C5INC+0LrRgNGD0LMl0K/RgNC+0YHQu9Cw0LLRgdC60LDRjyDQvtCx0LvQsNGB0YLRjBVcAAExAjEwAjExAjEyAjE0AjE1AjE3AjE4AjE5AjIwAjQ1AjQwAzIwMQMyMDUCOTkDMTAxAzIwNAIyNAMyMDMCMjUCODMCMjcCMjkCMzACOTECMzICMzMCMzQBMwE0AjM3AjM4AjQxAjQyAzIwNgI0NAI0NgI0NwMyMDACMjICNDkCNTACNTICNTMCNTQCNTYCNTcBNQI1OAI3OQI4NAI4MAI4MQI4MgIyNgI4NQI4NgI4NwMyMDICODgCODkCOTgDMTAyAjkyAjkzAjk1AjYwAjYxAjM2AjYzAjY0AjY1AjY2ATcCNjgCMjgCNjkCNzACNzECOTQCNzMBOAMxMDMDMjA3Ajc1Ajk2Ajc2Ajk3Ajc3AzEwNAI3OBQrA1xnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2RkAg0PZBYIZg8PFgIfAmUWAh8EBSlPcGVuTW9kYWxXaW5kb3dfY3RsMDBfY3BoQm9keV9tZHNEZWJ0b3IoKWQCAQ8PZBYCHwQFKU9wZW5Nb2RhbFdpbmRvd19jdGwwMF9jcGhCb2R5X21kc0RlYnRvcigpZAICDw9kFgIfBAUfQ2xlYXJfY3RsMDBfY3BoQm9keV9tZHNEZWJ0b3IoKWQCBQ8VASQvRGVidG9yTGlzdFdpbmRvdy5hc3B4P2lkVHlwZT1jb21tb25kAg8PZBYIAgMPD2QWBB4Ib25jaGFuZ2UFNlNldEhpZGRlbkZpZWxkX2N0bDAwX2NwaEJvZHlfY2xkckJlZ2luRGF0ZSh0aGlzLnZhbHVlKR4Kb25rZXlwcmVzcwU2U2V0SGlkZGVuRmllbGRfY3RsMDBfY3BoQm9keV9jbGRyQmVnaW5EYXRlKHRoaXMudmFsdWUpZAIFDw9kFgIfBAUqU2hvd0NhbGVuZGFyX2N0bDAwX2NwaEJvZHlfY2xkckJlZ2luRGF0ZSgpZAIGDw9kFgQeBVN0eWxlBTBjdXJzb3I6IHBvaW50ZXI7IHZpc2liaWxpdHk6aGlkZGVuOyBkaXNwbGF5Om5vbmUfBAUoQ2xlYXJJbnB1dF9jdGwwMF9jcGhCb2R5X2NsZHJCZWdpbkRhdGUoKWQCBw8PFgIeGENsaWVudFZhbGlkYXRpb25GdW5jdGlvbgUpVmFsaWRhdGVJbnB1dF9jdGwwMF9jcGhCb2R5X2NsZHJCZWdpbkRhdGVkZAIRD2QWCAIDDw9kFgQfBgU0U2V0SGlkZGVuRmllbGRfY3RsMDBfY3BoQm9keV9jbGRyRW5kRGF0ZSh0aGlzLnZhbHVlKR8HBTRTZXRIaWRkZW5GaWVsZF9jdGwwMF9jcGhCb2R5X2NsZHJFbmREYXRlKHRoaXMudmFsdWUpZAIFDw9kFgIfBAUoU2hvd0NhbGVuZGFyX2N0bDAwX2NwaEJvZHlfY2xkckVuZERhdGUoKWQCBg8PZBYEHwgFMGN1cnNvcjogcG9pbnRlcjsgdmlzaWJpbGl0eTpoaWRkZW47IGRpc3BsYXk6bm9uZR8EBSZDbGVhcklucHV0X2N0bDAwX2NwaEJvZHlfY2xkckVuZERhdGUoKWQCBw8PFgIfCQUnVmFsaWRhdGVJbnB1dF9jdGwwMF9jcGhCb2R5X2NsZHJFbmREYXRlZGQCAw9kFgJmD2QWAgIHD2QWAmYPFgIeBXN0eWxlBSBwb3NpdGlvbjogcmVsYXRpdmU7IGJvdHRvbTogMjVweGQYAgUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgwFFmN0bDAwJHJhZFdpbmRvd01hbmFnZXIFHmN0bDAwJFByaXZhdGVPZmZpY2UxJGFncmVlbWVudAUpY3RsMDAkUHJpdmF0ZU9mZmljZTEkaWJQcml2YXRlT2ZmaWNlRW50ZXIFIWN0bDAwJFByaXZhdGVPZmZpY2UxJGNiUmVtZW1iZXJNZQUgY3RsMDAkUHJpdmF0ZU9mZmljZTEkUmFkVG9vbFRpcDEFH2N0bDAwJFByaXZhdGVPZmZpY2UxJGlidFJlc3RvcmUFImN0bDAwJERlYnRvclNlYXJjaDEkaWJEZWJ0b3JTZWFyY2gFFmN0bDAwJGNwaEJvZHkkY2JXaXRoQXUFHWN0bDAwJGNwaEJvZHkkY2JXaXRoVmlvbGF0aW9uBR5jdGwwMCRjcGhCb2R5JGliTWVzc2FnZXNTZWFyY2gFFmN0bDAwJGNwaEJvZHkkaW1nQ2xlYXIFG2N0bDAwJGNwaEJvZHkkaWJFeGNlbEV4cG9ydAUYY3RsMDAkY3BoQm9keSRndk1lc3NhZ2VzDzwrAAwBCAIKZE9bRZdwitnVW99EvOlrRVv5tMqL|8|hiddenField|__VIEWSTATEGENERATOR|8EE02EF5|31|asyncPostBackControlIDs||ctl00$cphBody$ibMessagesSearch,|61|postBackControlIDs||ctl00$cphBody$ibExcelExport,,ctl00$cphBody$lnkbtnExcelExport,|87|updatePanelIDs||tctl00$PrivateOffice1$updpRestore,,fctl00$cphBody$updFilter,,tctl00$cphBody$upMessages,|0|childUpdatePanelIDs|||59|panelsToRefreshIDs||ctl00$PrivateOffice1$updpRestore,,ctl00$cphBody$upMessages,|2|asyncPostBackTimeout||90|25|formAction||./Messages.aspx?attempt=1|30|pageTitle||Список сообщений о банкротстве|66|arrayDeclaration|Page_ValidationSummaries|document.getElementById("ctl00_PrivateOffice1_ValidationSummary1")|71|arrayDeclaration|Page_Validators|document.getElementById("ctl00_PrivateOffice1_RequiredFieldValidator1")|65|arrayDeclaration|Page_Validators|document.getElementById("ctl00_PrivateOffice1_revEmailValidator")|189|scriptBlock|ScriptPath|/ScriptResource.axd?d=Bl_7vkzpwz1QWMrtozDrv6WQ0V2Y2dVK-T7MDdW_bULSjydHZxRhJuHa1C5_1cutPhCDRTxwWxx4SnvkLAQsOIfMtwGi5XeFPJ8tG2W4z-spDMFeJVSbbTQQIiflZRUoHdceg8Uwa-zDCNq6pVnjyOVM8041&t=7e969891|276|scriptStartupBlock|ScriptContentNoTags|
+(function(id) {
+    var e = document.getElementById(id);
+    if (e) {
+        e.dispose = function() {
+            Array.remove(Page_ValidationSummaries, document.getElementById(id));
         }
+        e = null;
+    }
+})('ctl00_PrivateOffice1_ValidationSummary1');
+|281|scriptStartupBlock|ScriptContentNoTags|
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
 
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
         return true;
     }
-
-    function ClearOrgForm() {
-        document.getElementById("ctl00_BodyPlaceHolder_OrgTradeOrganizerList1_tbOrgName").value = "";
-        document.getElementById("ctl00_BodyPlaceHolder_OrgTradeOrganizerList1_tbOrgAddress").value = "";
-    }
-
-    function ClickOrgTrade() {
-        var controls = $("#" + "ctl00_BodyPlaceHolder_OrgTradeOrganizerList1_pOrgTradeOrganizerList").find("input");
-
-        $.each(controls, function() {
-            this.value = this.value.replace(new RegExp("<", "g"), '');
-        });
-    }
-</script>
-
-
-						
-		</div>
-				
-	</div><div id="ctl00_BodyPlaceHolder_RadPageView3" class="rmpHiddenView">
-		
-					<div id="ctl00_BodyPlaceHolder_UpdatePanel1">
-			
-							
-
-<table class="filter">
-    <tr>
-        <td class="fhead"></td>
-    </tr>
-    <tr>
-        <td>
-            <div id="ctl00_BodyPlaceHolder_PersonTradeOrganizerList1_pSearchPrsTrade" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;ctl00_BodyPlaceHolder_PersonTradeOrganizerList1_btnSearchPrs&#39;)">
-				
-                <table class="fforms">
-                    <tr>
-                        <td align="left" nowrap="nowrap" width="90">
-                            Фамилия
-                        </td>
-                        <td nowrap="nowrap">
-                            <input name="ctl00$BodyPlaceHolder$PersonTradeOrganizerList1$tbPrsLastName" type="text" maxlength="50" id="ctl00_BodyPlaceHolder_PersonTradeOrganizerList1_tbPrsLastName" class="form" style="width:150px;" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="left" nowrap="nowrap">
-                            Имя
-                        </td>
-                        <td nowrap="nowrap">
-                            <input name="ctl00$BodyPlaceHolder$PersonTradeOrganizerList1$tbPrsFirstName" type="text" maxlength="50" id="ctl00_BodyPlaceHolder_PersonTradeOrganizerList1_tbPrsFirstName" class="form" style="width:150px;" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="left" nowrap="nowrap">
-                            Отчество
-                        </td>
-                        <td nowrap="nowrap">
-                            <input name="ctl00$BodyPlaceHolder$PersonTradeOrganizerList1$tbPrsMiddleName" type="text" maxlength="50" id="ctl00_BodyPlaceHolder_PersonTradeOrganizerList1_tbPrsMiddleName" class="form" style="width:150px;" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="left" nowrap="nowrap">
-                            Адрес
-                        </td>
-                        <td nowrap="nowrap">
-                            <input name="ctl00$BodyPlaceHolder$PersonTradeOrganizerList1$tbPrsAddress" type="text" maxlength="300" id="ctl00_BodyPlaceHolder_PersonTradeOrganizerList1_tbPrsAddress" class="form" style="width:300px;" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        </td>
-                        <td>
-                            <input type="image" name="ctl00$BodyPlaceHolder$PersonTradeOrganizerList1$btnSearchPrs" id="ctl00_BodyPlaceHolder_PersonTradeOrganizerList1_btnSearchPrs" src="img/but_search.png" onclick="ClickPrsTrade();" />
-                            <img id="clearPrs" src="/img/but_clear.png" alt="Очистить"
-                                style="cursor: pointer" onclick="ClearPrsForm()" />&nbsp;&nbsp;&nbsp;
-                        </td>
-                    </tr>
-                </table>
-            
-			</div>
-        </td>
-    </tr>
-</table>
-<div id="ctl00_BodyPlaceHolder_PersonTradeOrganizerList1_upPersonTradeOrganizerList">
-				
-        
-        <div>
-
-				</div>
-        
-    
-			</div>
-
-<script language="javascript" type="text/javascript">
-    function ClickSubmitPrs(event) {
-        var k;
-
-        if (event.which)
-            k = event.which.keyCode;
-        else
-            k = event.keyCode;
-
-        if (k == 13) {
-            document.getElementById("ctl00_BodyPlaceHolder_PersonTradeOrganizerList1_btnSearchPrs").click();
-            event.cancelBubble = true;
-            return false;
-        }
-
-        return true;
-    }
-
-    function ClearPrsForm() {
-        document.getElementById("ctl00_BodyPlaceHolder_PersonTradeOrganizerList1_tbPrsLastName").value = "";
-        document.getElementById("ctl00_BodyPlaceHolder_PersonTradeOrganizerList1_tbPrsFirstName").value = "";
-        document.getElementById("ctl00_BodyPlaceHolder_PersonTradeOrganizerList1_tbPrsMiddleName").value = "";
-        document.getElementById("ctl00_BodyPlaceHolder_PersonTradeOrganizerList1_tbPrsAddress").value = "";
-    }
-
-    function ClickPrsTrade() {
-        var controls = $("#" + "ctl00_BodyPlaceHolder_PersonTradeOrganizerList1_pSearchPrsTrade").find("input");
-
-        $.each(controls, function() {
-            this.value = this.value.replace(new RegExp("<", "g"), '');
-        });
-    }
-</script>
-
-
-						
-		</div>
-				
-	</div><div id="ctl00_BodyPlaceHolder_RadPageViewSro" class="rmpHiddenView">
-		
-					<div id="ctl00_BodyPlaceHolder_upSro">
-			
-							
-
-<table class="filter">
-	<tr>
-		<td class="fhead">
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<div id="ctl00_BodyPlaceHolder_ucSroList1_updFilter">
-				
-					<div id="ctl00_BodyPlaceHolder_ucSroList1_pSro" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;ctl00_BodyPlaceHolder_ucSroList1_ibSroSearch&#39;)">
-					
-						<table class="fforms">
-							<tr>
-								<td align="left" nowrap="nowrap">
-									Регистрационный номер
-								</td>
-								<td nowrap="nowrap">
-									<input name="ctl00$BodyPlaceHolder$ucSroList1$tbRegNum" type="text" maxlength="30" id="ctl00_BodyPlaceHolder_ucSroList1_tbRegNum" class="form" style="width:250px;" />
-								</td>
-							</tr>
-							<tr>
-								<td align="left" nowrap="nowrap">
-									Наименование
-								</td>
-								<td nowrap="nowrap">
-									<input name="ctl00$BodyPlaceHolder$ucSroList1$tbName" type="text" maxlength="512" id="ctl00_BodyPlaceHolder_ucSroList1_tbName" class="form" style="width:250px;" />
-								</td>
-							</tr>
-							<tr>
-								<td>
-								</td>
-								<td>
-									<input type="image" name="ctl00$BodyPlaceHolder$ucSroList1$ibSroSearch" id="ctl00_BodyPlaceHolder_ucSroList1_ibSroSearch" title="Поиск" class="filter_seach" src="img/but_search.png" onclick="ClickSro();" />
-									<input type="image" name="ctl00$BodyPlaceHolder$ucSroList1$ibSroClear" id="ctl00_BodyPlaceHolder_ucSroList1_ibSroClear" title="Очистить" class="filter_clear" src="img/but_clear.png" onclick="ClearSroForm(); return false;" />
-								</td>
-							</tr>
-						</table>
-					
-				</div>
-				
-			</div>
-		</td>
-	</tr>
-</table>
-<div id="ctl00_BodyPlaceHolder_ucSroList1_upSroList">
-				
-		<div>
-
-				</div>
-		
-	
-			</div>
-<script language="javascript" type="text/javascript">
-	function ClearSroForm() {
-		document.getElementById("ctl00_BodyPlaceHolder_ucSroList1_tbRegNum").value = "";
-		document.getElementById("ctl00_BodyPlaceHolder_ucSroList1_tbName").value = "";
-	}
-
-	function ClickSro() {
-		var controls = $("ctl00_BodyPlaceHolder_ucSroList1_pSro").find("input");
-
-		$.each(controls, function () {
-			this.value = this.value.replace(new RegExp("<", "g"), '');
-		});
-	}
-</script>
-
-						
-		</div>
-				
-	</div><div id="ctl00_BodyPlaceHolder_RadPageViewCompany" class="rmpHiddenView">
-		
-					<div id="ctl00_BodyPlaceHolder_upCompany">
-			
-							
-
-<script src="/js/Controls/CompanyList.js" type="text/javascript"></script>
-<table class="filter">
-    <tr>
-        <td class="fhead"></td>
-    </tr>
-    <tr>
-        <td>
-            <div id="ctl00_BodyPlaceHolder_ucCompanyList_CompanyListFilterPanel" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;ctl00_BodyPlaceHolder_ucCompanyList_btnCompanySearch&#39;)">
-				
-                <table class="fforms">
-                    <tr>
-                        <td nowrap="nowrap" style="text-align: left;">Наименование
-                        </td>
-                        <td nowrap="nowrap" style="padding-left: 10px">
-                            <input name="ctl00$BodyPlaceHolder$ucCompanyList$tbCompanyName" type="text" maxlength="500" id="ctl00_BodyPlaceHolder_ucCompanyList_tbCompanyName" class="form" data-item="сompanyName" style="width:500px;" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="padding-top: 5px; text-align: right;">
-                            <input type="image" name="ctl00$BodyPlaceHolder$ucCompanyList$btnCompanySearch" id="ctl00_BodyPlaceHolder_ucCompanyList_btnCompanySearch" title="Поиск" class="filter_seach" src="img/but_search.png" />
-                            <input type="image" name="ctl00$BodyPlaceHolder$ucCompanyList$btnClearCompnayFilter" id="ctl00_BodyPlaceHolder_ucCompanyList_btnClearCompnayFilter" title="Очистить" class="filter_clear" data-item="btnClearCompanyFilter" src="img/but_clear.png" />
-                        </td>
-                    </tr>
-                </table>
-            
-			</div>
-        </td>
-    </tr>
-</table>
-<div id="ctl00_BodyPlaceHolder_ucCompanyList_upCompanyList">
-				
-        <div>
-
-				</div>
-        
-    
-			</div>
-
-						
-		</div>
-				
-	</div><div id="ctl00_BodyPlaceHolder_RadPageViewPerson" class="rmpHiddenView">
-		
-					<div id="ctl00_BodyPlaceHolder_upPerson">
-			
-							
-
-<script src="/js/Controls/PersonList.js" type="text/javascript"></script>
-<table class="filter">
-    <tr>
-        <td class="fhead"></td>
-    </tr>
-    <tr>
-        <td>
-            <div id="ctl00_BodyPlaceHolder_PersonList_PersonListFilterPanel" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;ctl00_BodyPlaceHolder_PersonList_btnPersonSearch&#39;)">
-				
-                <table class="fforms">
-                    <tr>
-                        <td nowrap="nowrap" style="text-align: left;">Фамилия
-                        </td>
-                        <td nowrap="nowrap" style="padding-left: 10px">
-                            <input name="ctl00$BodyPlaceHolder$PersonList$tbLastName" type="text" maxlength="100" id="ctl00_BodyPlaceHolder_PersonList_tbLastName" class="form" data-item="tbLastName" style="width:300px;" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td nowrap="nowrap" style="text-align: left;">Имя
-                        </td>
-                        <td nowrap="nowrap" style="padding-left: 10px">
-                            <input name="ctl00$BodyPlaceHolder$PersonList$tbFirstName" type="text" maxlength="50" id="ctl00_BodyPlaceHolder_PersonList_tbFirstName" class="form" data-item="tbFirstName" style="width:300px;" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td nowrap="nowrap" style="text-align: left;">Отчество
-                        </td>
-                        <td nowrap="nowrap" style="padding-left: 10px">
-                            <input name="ctl00$BodyPlaceHolder$PersonList$tbMiddleName" type="text" maxlength="100" id="ctl00_BodyPlaceHolder_PersonList_tbMiddleName" class="form" data-item="tbMiddleName" style="width:300px;" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="padding-top: 5px; text-align: right;">
-                            <input type="image" name="ctl00$BodyPlaceHolder$PersonList$btnPersonSearch" id="ctl00_BodyPlaceHolder_PersonList_btnPersonSearch" title="Поиск" class="filter_seach" src="img/but_search.png" />
-                            <input type="image" name="ctl00$BodyPlaceHolder$PersonList$btnClearPersonFilter" id="ctl00_BodyPlaceHolder_PersonList_btnClearPersonFilter" title="Очистить" class="filter_clear" data-item="btnClearPersonFilter" src="img/but_clear.png" />
-                        </td>
-                    </tr>
-                </table>
-            
-			</div>
-        </td>
-    </tr>
-</table>
-<div id="ctl00_BodyPlaceHolder_PersonList_upPersonList">
-				
-        <div>
-
-				</div>
-        
-    
-			</div>
-
-						
-		</div>
-				
-	</div><div id="ctl00_BodyPlaceHolder_RadPageViewFns" class="rmpHiddenView">
-		
-					<div id="ctl00_BodyPlaceHolder_UpdatePanelFns">
-			
-							
-
-<script src="/js/Controls/FnsDepartmentList.js" type="text/javascript"></script>
-<script src="/js/CodeInput.js" type="text/javascript"></script>
-<table class="filter">
-	<tr>
-		<td class="fhead"></td>
-	</tr>
-	<tr>
-		<td>
-			<div id="ctl00_BodyPlaceHolder_FnsList_FnsListFilterPanel" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;ctl00_BodyPlaceHolder_FnsList_btnFnsSearch&#39;)">
-				
-				<table class="fforms">
-					<tr>
-						<td nowrap="nowrap" style="text-align: left;">Наименование
-						</td>
-						<td nowrap="nowrap" style="padding-left: 10px">
-							<input name="ctl00$BodyPlaceHolder$FnsList$tbFnsDepartmentName" type="text" maxlength="250" id="ctl00_BodyPlaceHolder_FnsList_tbFnsDepartmentName" class="form" data-item="tbFnsDepartmentName" style="width:500px;" />
-						</td>
-					</tr>
-					<tr>
-						<td nowrap="nowrap" style="text-align: left;">ИНН
-						</td>
-						<td nowrap="nowrap" style="padding-left: 10px">
-							<input name="ctl00$BodyPlaceHolder$FnsList$tbFnsDepartmentInn" type="text" maxlength="10" id="ctl00_BodyPlaceHolder_FnsList_tbFnsDepartmentInn" class="form digit" data-item="tbFnsDepartmentInn" style="width:500px;" />
-						</td>
-					</tr>
-					<tr>
-						<td nowrap="nowrap" style="text-align: left;">Код
-						</td>
-						<td nowrap="nowrap" style="padding-left: 10px">
-							<input name="ctl00$BodyPlaceHolder$FnsList$tbFnsDepartmentCode" type="text" maxlength="10" id="ctl00_BodyPlaceHolder_FnsList_tbFnsDepartmentCode" class="form digit" data-item="tbFnsDepartmentCode" style="width:500px;" />
-						</td>
-					</tr>
-					<tr>
-						<td colspan="3" style="padding-top: 5px; text-align: right;">
-							<input type="image" name="ctl00$BodyPlaceHolder$FnsList$btnFnsSearch" id="ctl00_BodyPlaceHolder_FnsList_btnFnsSearch" title="Поиск" class="filter_seach" src="img/but_search.png" />
-							<input type="image" name="ctl00$BodyPlaceHolder$FnsList$btnClearFnsFilter" id="ctl00_BodyPlaceHolder_FnsList_btnClearFnsFilter" title="Очистить" class="filter_clear" data-item="btnClearFnsFilter" src="img/but_clear.png" />
-						</td>
-					</tr>
-				</table>
-			
-			</div>
-		</td>
-	</tr>
-</table>
-<div id="ctl00_BodyPlaceHolder_FnsList_upFnsList">
-				
-		<div>
-
-				</div>
-		
-	
-			</div>
-						
-		</div>
-				
-	</div><div id="ctl00_BodyPlaceHolder_RadPageView4" class="rmpHiddenView">
-		
-					<div id="ctl00_BodyPlaceHolder_UpdatePanelOther">
-			
-							
-
-<table cellpadding="0" cellspacing="0" style="border: 0px">
-    <tr>
-        <td>
-            <div>
-				<table class="bank" cellspacing="0" rules="all" border="1" id="ctl00_BodyPlaceHolder_ForeignSystemList1_gvOther" style="border-collapse:collapse;">
-					<tr>
-						<th scope="col">Наименование</th>
-					</tr><tr onclick="javascript:closeDialog(&#39;ForeignSystem|1|Государственная корпорация «Агентство по страхованию вкладов»&#39;);" style="cursor:pointer;">
-						<td style="width:30%;">
-                            Государственная корпорация «Агентство по страхованию вкладов»
-                        </td>
-					</tr><tr class="row" onclick="javascript:closeDialog(&#39;ExternalOrg|28|Центральный банк РФ&#39;);" style="cursor:pointer;">
-						<td style="width:30%;">
-                            Центральный банк РФ
-                        </td>
-					</tr><tr onclick="javascript:closeDialog(&#39;ExternalOrg|30|Федеральная служба судебных приставов&#39;);" style="cursor:pointer;">
-						<td style="width:30%;">
-                            Федеральная служба судебных приставов
-                        </td>
-					</tr><tr class="row" onclick="javascript:closeDialog(&#39;ExternalOrg|31|Федеральная налоговая служба&#39;);" style="cursor:pointer;">
-						<td style="width:30%;">
-                            Федеральная налоговая служба
-                        </td>
-					</tr><tr onclick="javascript:closeDialog(&#39;ExternalOrg|32|Оператор ЕФРСБ&#39;);" style="cursor:pointer;">
-						<td style="width:30%;">
-                            Оператор ЕФРСБ
-                        </td>
-					</tr>
-				</table>
-			</div>
-            
-        </td>
-    </tr>
-</table>
-
-						
-		</div>
-				
-	</div><input id="ctl00_BodyPlaceHolder_radMulti_ClientState" name="ctl00_BodyPlaceHolder_radMulti_ClientState" type="hidden" />
-</div>
-		|4924|hiddenField|__VIEWSTATE|/wEPDwUKMTg2MDgzODM4Nw9kFgJmD2QWAgIDD2QWAgIDD2QWAmYPZBYCZg9kFgQCAQ8UKwACFCsAAg8WBB4NU2VsZWN0ZWRJbmRleGYeF0VuYWJsZUFqYXhTa2luUmVuZGVyaW5naGQQFghmAgECAgIDAgQCBQIGAgcWCBQrAAIPZBYEHgVTdHlsZQUTd2hpdGUtc3BhY2U6IG5vd3JhcB4Hb25jbGljawUKQ2xpY2tUYWIoKWQUKwACD2QWBB8CBRN3aGl0ZS1zcGFjZTogbm93cmFwHwMFCkNsaWNrVGFiKClkFCsAAg9kFgQfAgUTd2hpdGUtc3BhY2U6IG5vd3JhcB8DBQpDbGlja1RhYigpZBQrAAIPZBYCHwMFCkNsaWNrVGFiKClkFCsAAmRkFCsAAmRkFCsAAmRkFCsAAmRkDxYIZmZmZmZmZmYWAQVvVGVsZXJpay5XZWIuVUkuUmFkVGFiLCBUZWxlcmlrLldlYi5VSSwgVmVyc2lvbj0yMDEyLjMuMTAxNi40MCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj0xMjFmYWU3ODE2NWJhM2Q0ZBYIZg8PZBYEHwIFE3doaXRlLXNwYWNlOiBub3dyYXAfAwUKQ2xpY2tUYWIoKWQCAQ8PZBYEHwIFE3doaXRlLXNwYWNlOiBub3dyYXAfAwUKQ2xpY2tUYWIoKWQCAg8PZBYEHwIFE3doaXRlLXNwYWNlOiBub3dyYXAfAwUKQ2xpY2tUYWIoKWQCAw8PZBYCHwMFCkNsaWNrVGFiKClkAgMPFCsAAg8WAh8BaGQVCAxSYWRQYWdlVmlldzEMUmFkUGFnZVZpZXcyDFJhZFBhZ2VWaWV3Mw5SYWRQYWdlVmlld1NybxJSYWRQYWdlVmlld0NvbXBhbnkRUmFkUGFnZVZpZXdQZXJzb24OUmFkUGFnZVZpZXdGbnMMUmFkUGFnZVZpZXc0FgpmD2QWAgIBD2QWAmYPZBYCAgEPZBYCZg9kFgJmD2QWAgIBD2QWBAIBD2QWBmYPDxYCHgRUZXh0ZRYCHwMFQk9wZW5Nb2RhbFdpbmRvd19jdGwwMF9Cb2R5UGxhY2VIb2xkZXJfU2VhcmNoQXJiaXRyTWFuYWdlcjFfbXNTcm8oKWQCAQ8PZBYCHwMFQk9wZW5Nb2RhbFdpbmRvd19jdGwwMF9Cb2R5UGxhY2VIb2xkZXJfU2VhcmNoQXJiaXRyTWFuYWdlcjFfbXNTcm8oKWQCAg8PZBYCHwMFOENsZWFyX2N0bDAwX0JvZHlQbGFjZUhvbGRlcl9TZWFyY2hBcmJpdHJNYW5hZ2VyMV9tc1NybygpZAILDxYCHgVzdHlsZQUhZGlzcGxheTogbm9uZTsgdmlzaWJpbGl0eTogaGlkZGVuZAIED2QWAgIBD2QWAmYPZBYCAgEPZBYCAgEPZBYCZg9kFgICAQ88KwARAgEQFgAWABYADBQrAABkAgUPZBYCAgEPZBYCZg9kFgICAQ9kFgICAQ9kFgJmD2QWAgIBDzwrABECARAWABYAFgAMFCsAAGQCBg9kFgICAQ9kFgJmD2QWAgIBD2QWAgIBD2QWAmYPZBYCAgEPPCsAEQIBEBYAFgAWAAwUKwAAZAIHD2QWAgIBD2QWAmYPZBYCAgEPZBYCAgEPPCsAEQMADxYGHgxEYXRhU291cmNlSUQFCG9kc090aGVyHgtfIURhdGFCb3VuZGceC18hSXRlbUNvdW50AgVkARAWABYAFgAMFCsAABYCZg9kFgwCAQ8PZBYEHwUFD2N1cnNvcjpwb2ludGVyOx8DBaABamF2YXNjcmlwdDpjbG9zZURpYWxvZygnRm9yZWlnblN5c3RlbXwxfNCT0L7RgdGD0LTQsNGA0YHRgtCy0LXQvdC90LDRjyDQutC+0YDQv9C+0YDQsNGG0LjRjyDCq9CQ0LPQtdC90YLRgdGC0LLQviDQv9C+INGB0YLRgNCw0YXQvtCy0LDQvdC40Y4g0LLQutC70LDQtNC+0LLCuycpOxYCZg9kFgJmDxUBddCT0L7RgdGD0LTQsNGA0YHRgtCy0LXQvdC90LDRjyDQutC+0YDQv9C+0YDQsNGG0LjRjyDCq9CQ0LPQtdC90YLRgdGC0LLQviDQv9C+INGB0YLRgNCw0YXQvtCy0LDQvdC40Y4g0LLQutC70LDQtNC+0LLCu2QCAg8PZBYEHwUFD2N1cnNvcjpwb2ludGVyOx8DBU5qYXZhc2NyaXB0OmNsb3NlRGlhbG9nKCdFeHRlcm5hbE9yZ3wyOHzQptC10L3RgtGA0LDQu9GM0L3Ri9C5INCx0LDQvdC6INCg0KQnKTsWAmYPZBYCZg8VASTQptC10L3RgtGA0LDQu9GM0L3Ri9C5INCx0LDQvdC6INCg0KRkAgMPD2QWBB8FBQ9jdXJzb3I6cG9pbnRlcjsfAwVxamF2YXNjcmlwdDpjbG9zZURpYWxvZygnRXh0ZXJuYWxPcmd8MzB80KTQtdC00LXRgNCw0LvRjNC90LDRjyDRgdC70YPQttCx0LAg0YHRg9C00LXQsdC90YvRhSDQv9GA0LjRgdGC0LDQstC+0LInKTsWAmYPZBYCZg8VAUfQpNC10LTQtdGA0LDQu9GM0L3QsNGPINGB0LvRg9C20LHQsCDRgdGD0LTQtdCx0L3Ri9GFINC/0YDQuNGB0YLQsNCy0L7QsmQCBA8PZBYEHwUFD2N1cnNvcjpwb2ludGVyOx8DBWBqYXZhc2NyaXB0OmNsb3NlRGlhbG9nKCdFeHRlcm5hbE9yZ3wzMXzQpNC10LTQtdGA0LDQu9GM0L3QsNGPINC90LDQu9C+0LPQvtCy0LDRjyDRgdC70YPQttCx0LAnKTsWAmYPZBYCZg8VATbQpNC10LTQtdGA0LDQu9GM0L3QsNGPINC90LDQu9C+0LPQvtCy0LDRjyDRgdC70YPQttCx0LBkAgUPD2QWBB8FBQ9jdXJzb3I6cG9pbnRlcjsfAwVFamF2YXNjcmlwdDpjbG9zZURpYWxvZygnRXh0ZXJuYWxPcmd8MzJ80J7Qv9C10YDQsNGC0L7RgCDQldCk0KDQodCRJyk7FgJmD2QWAmYPFQEb0J7Qv9C10YDQsNGC0L7RgCDQldCk0KDQodCRZAIGDw8WAh4HVmlzaWJsZWhkZBgJBS1jdGwwMCRCb2R5UGxhY2VIb2xkZXIkUGVyc29uTGlzdCRndlBlcnNvbkxpc3QPZ2QFKGN0bDAwJEJvZHlQbGFjZUhvbGRlciR1Y1Nyb0xpc3QxJGd2U3JvZXMPZ2QFPmN0bDAwJEJvZHlQbGFjZUhvbGRlciRPcmdUcmFkZU9yZ2FuaXplckxpc3QxJGd2VHJhZGVPcmdhbml6ZXJzD2dkBUFjdGwwMCRCb2R5UGxhY2VIb2xkZXIkUGVyc29uVHJhZGVPcmdhbml6ZXJMaXN0MSRndlRyYWRlT3JnYW5pemVycw9nZAUxY3RsMDAkQm9keVBsYWNlSG9sZGVyJHVjQ29tcGFueUxpc3QkZ3ZDb21wYW55TGlzdA9nZAU7Y3RsMDAkQm9keVBsYWNlSG9sZGVyJFNlYXJjaEFyYml0ck1hbmFnZXIxJGd2QXJiaXRyTWFuYWdlcnMPPCsADAEIAgFkBSdjdGwwMCRCb2R5UGxhY2VIb2xkZXIkRm5zTGlzdCRndkZuc0xpc3QPZ2QFMGN0bDAwJEJvZHlQbGFjZUhvbGRlciRGb3JlaWduU3lzdGVtTGlzdDEkZ3ZPdGhlcg88KwAMAQgCAWQFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYPBSZjdGwwMCRCb2R5UGxhY2VIb2xkZXIkcnRzUHVibGlzaGVyVHlwZQUeY3RsMDAkQm9keVBsYWNlSG9sZGVyJHJhZE11bHRpBURjdGwwMCRCb2R5UGxhY2VIb2xkZXIkU2VhcmNoQXJiaXRyTWFuYWdlcjEkY2hiV2l0aFB1YmxpY2F0ZWRNZXNzYWdlcwU2Y3RsMDAkQm9keVBsYWNlSG9sZGVyJFNlYXJjaEFyYml0ck1hbmFnZXIxJGliQXJtU2VhcmNoBTVjdGwwMCRCb2R5UGxhY2VIb2xkZXIkU2VhcmNoQXJiaXRyTWFuYWdlcjEkaWJBcm1DbGVhcgU5Y3RsMDAkQm9keVBsYWNlSG9sZGVyJE9yZ1RyYWRlT3JnYW5pemVyTGlzdDEkYnRuU2VhcmNoT3JnBTxjdGwwMCRCb2R5UGxhY2VIb2xkZXIkUGVyc29uVHJhZGVPcmdhbml6ZXJMaXN0MSRidG5TZWFyY2hQcnMFLGN0bDAwJEJvZHlQbGFjZUhvbGRlciR1Y1Nyb0xpc3QxJGliU3JvU2VhcmNoBStjdGwwMCRCb2R5UGxhY2VIb2xkZXIkdWNTcm9MaXN0MSRpYlNyb0NsZWFyBTRjdGwwMCRCb2R5UGxhY2VIb2xkZXIkdWNDb21wYW55TGlzdCRidG5Db21wYW55U2VhcmNoBTljdGwwMCRCb2R5UGxhY2VIb2xkZXIkdWNDb21wYW55TGlzdCRidG5DbGVhckNvbXBuYXlGaWx0ZXIFMGN0bDAwJEJvZHlQbGFjZUhvbGRlciRQZXJzb25MaXN0JGJ0blBlcnNvblNlYXJjaAU1Y3RsMDAkQm9keVBsYWNlSG9sZGVyJFBlcnNvbkxpc3QkYnRuQ2xlYXJQZXJzb25GaWx0ZXIFKmN0bDAwJEJvZHlQbGFjZUhvbGRlciRGbnNMaXN0JGJ0bkZuc1NlYXJjaAUvY3RsMDAkQm9keVBsYWNlSG9sZGVyJEZuc0xpc3QkYnRuQ2xlYXJGbnNGaWx0ZXK5MH4NaD69FJlDpYNOIy0Sm7j7sg==|8|hiddenField|__VIEWSTATEGENERATOR|B54F2736|0|hiddenField|__EVENTTARGET||0|hiddenField|__EVENTARGUMENT||824|hiddenField|__EVENTVALIDATION|/wEdACUVGSA5AtNwQ+DNsWo4GibA8GT3Qp5/iyzq9V7XhZLN2Y7HhgdTgGra9PRFp4GAvMLtjZ1kAuMZjVUjdSST0iThTfUXqioHwXTYQ6Qe76nkanqbqqvyYiWMKm1JdR2YNfQOaeyFYxWC423fzgSBjKqcyiAD9tq9SCtWJ8PtyAW7AsrTdyggQfr90KR0aAYh27NYIz2YoYyJ8O2wT8jQeWvtTy/oRtSzpiVwAGhR39DsuzazIlHyte1HSO4JFOtKDW+7igjWvWF52wXkcsE9g8xz/Blra+0HXrF7j8ELRQ4NDq7RKKFBAngy4SfhR4aoACvFIVC7lNsdNB8Aq6CEKYwEpbIIiNGckZEwkDQqyIkTpld5UUbodeIpt9VkUywVpRLyCjrxRrNSz/twF9Wt6Za3Eo5hXun1pQDChkRJmQ8oK6Dk3u575SQM0Y65PXw0Es/dutFiqhunsaER7vo/waNkraUXic7c4AFo2D3BGTqI6hCpaDs3lZDyLAZGt39Df241SQPCcFuEe9X3o4Asmi9TDLYQFEHsZicgE//LFD+UyAZQJ3nSNgR3GHrnK98iaEGatjfIxRysJFI7bZF1uX6KjDDZX7/lf0W207RbXq7Px626WCzwDhPUCehYPy9moVROO3IWV/XjdFo/izsD4vaNUr63fvD8ajjGhVfxHgquAC297WvfOJaTQAmwZLeoLjzWh39gvUIlZ0PyDuCNAgaxqEWuz0kWf7aJMPR6KAzFcwyZVDeio3Hf8cID/GZI1/y/IRtVxzp2nV90zz54h+tfN6sIMKoLpxvvbTOhGmc7WyUqvoY=|370|asyncPostBackControlIDs||ctl00$BodyPlaceHolder$SearchArbitrManager1$ibArmSearch,,ctl00$BodyPlaceHolder$OrgTradeOrganizerList1$btnSearchOrg,,ctl00$BodyPlaceHolder$PersonTradeOrganizerList1$btnSearchPrs,,ctl00$BodyPlaceHolder$ucSroList1$ibSroSearch,,ctl00$BodyPlaceHolder$ucCompanyList$btnCompanySearch,,ctl00$BodyPlaceHolder$PersonList$btnPersonSearch,,ctl00$BodyPlaceHolder$FnsList$btnFnsSearch,|0|postBackControlIDs|||802|updatePanelIDs||tctl00$BodyPlaceHolder$mainpanel,,tctl00$BodyPlaceHolder$upOrgs,,fctl00$BodyPlaceHolder$SearchArbitrManager1$updFilter,,tctl00$BodyPlaceHolder$SearchArbitrManager1$upArmList,,tctl00$BodyPlaceHolder$upPersons,,tctl00$BodyPlaceHolder$OrgTradeOrganizerList1$upOrgTradeOrganizerList,,tctl00$BodyPlaceHolder$UpdatePanel1,,tctl00$BodyPlaceHolder$PersonTradeOrganizerList1$upPersonTradeOrganizerList,,tctl00$BodyPlaceHolder$upSro,,fctl00$BodyPlaceHolder$ucSroList1$updFilter,,tctl00$BodyPlaceHolder$ucSroList1$upSroList,,tctl00$BodyPlaceHolder$upCompany,,tctl00$BodyPlaceHolder$ucCompanyList$upCompanyList,,tctl00$BodyPlaceHolder$upPerson,,tctl00$BodyPlaceHolder$PersonList$upPersonList,,tctl00$BodyPlaceHolder$UpdatePanelFns,,tctl00$BodyPlaceHolder$FnsList$upFnsList,,tctl00$BodyPlaceHolder$UpdatePanelOther,|734|childUpdatePanelIDs||ctl00$BodyPlaceHolder$upOrgs,ctl00$BodyPlaceHolder$SearchArbitrManager1$updFilter,ctl00$BodyPlaceHolder$SearchArbitrManager1$upArmList,ctl00$BodyPlaceHolder$upPersons,ctl00$BodyPlaceHolder$OrgTradeOrganizerList1$upOrgTradeOrganizerList,ctl00$BodyPlaceHolder$UpdatePanel1,ctl00$BodyPlaceHolder$PersonTradeOrganizerList1$upPersonTradeOrganizerList,ctl00$BodyPlaceHolder$upSro,ctl00$BodyPlaceHolder$ucSroList1$updFilter,ctl00$BodyPlaceHolder$ucSroList1$upSroList,ctl00$BodyPlaceHolder$upCompany,ctl00$BodyPlaceHolder$ucCompanyList$upCompanyList,ctl00$BodyPlaceHolder$upPerson,ctl00$BodyPlaceHolder$PersonList$upPersonList,ctl00$BodyPlaceHolder$UpdatePanelFns,ctl00$BodyPlaceHolder$FnsList$upFnsList,ctl00$BodyPlaceHolder$UpdatePanelOther|32|panelsToRefreshIDs||ctl00$BodyPlaceHolder$mainpanel,|2|asyncPostBackTimeout||90|54|formAction||./PublisherListWindow.aspx?rwndrnd=0.25684540750068474|9|pageTitle||Выбор СРО|168|scriptBlock|ScriptPath|/ScriptResource.axd?d=uxASqN5zbYavJphOoby6oPgMFfhspCdt34AnHfU4b5FaT2Y4ifFAybbDUv_N4o5gGDx-YTW0TWesyieP0Klzjib6dN9KucUOgjnxicggJxb5bY10WpDuB1wKUiPwPUTl4QiguQ2&t=1f1fff7f|189|scriptBlock|ScriptPath|/ScriptResource.axd?d=yJdoTplHYXFitrTgtYbgV3XGGLp-3tEEAxlne28WLubQV45R7ZuqB0B43ygvUhjvb62dJC1yQxR8BuESK4UkSVdVnf2GmTt6rT0cmvj07bVe68wrnjzynWqPrw1PSkqRJRRR5PnjUzHQXwwPQ7BwK8HFtjw1&t=1f1fff7f|189|scriptBlock|ScriptPath|/ScriptResource.axd?d=hYJQDrMl0iQ7ImV5SuDRBc141IkDA5n9ejfLM5aEVX4n7XPVYrooMZL2iHGv2gFZSI4W1gL9YDmttPG1tLEb-G4bFxjh04-hIOYkhlIjSeNjcLLEJDaIiHZCGRSeMJRTrQ-h6GWRJRUzrYpWzNEvnb1Cdy41&t=1f1fff7f|210|scriptBlock|ScriptPath|/ScriptResource.axd?d=sW4n0FFivHPUbceSdCZKqJJbXRirGVnNCdBBAZWjYE7wdoRxDqMU6BjKSykq643sk6Co6zqvyUWlaQJVHDUvZgRnVj6tccooZD4vgFOQlH_zi_u4j1Vy5y53PgYPAgjbozbmHWzZ5dhqbV8r4IMUlghs6j32loHpYoVky-9I1QyV55bZ0&t=1f1fff7f|210|scriptBlock|ScriptPath|/ScriptResource.axd?d=40Fy3AQrhxxgQa4zEgEt3FS5Lx-CqtbyuvhLl7Kge2xOMRjH-7FPV1V5DejZoMPxImoL7UhCdS0CK9faMWdFOl34PTLPDV7nMzwt2bXtLgDVz8kL6KyGXX8v3EaoQHXRWF8Qw_bIBGsC_vaoINd5kvX5STzEWoClnA4FgGqcRIQHz9kw0&t=1f1fff7f|189|scriptBlock|ScriptPath|/ScriptResource.axd?d=Dr-XakFwIHJJAgvfXwSDGZmqwHYzS5qNNUuucw4-SM39-gvEmwJsT0o8QHYNVa6fQN8hYs3CIqFzVyCtOz1qh1Xtp17VX9l_VN3UTBcUY0Io31xYXCNh0xND9MTdM_nXpZpnu0jdDJVBTxl0lpWmSExux7Y1&t=1f1fff7f|210|scriptBlock|ScriptPath|/ScriptResource.axd?d=YF8XiUIshdvAh-B7HBH10Ny3e8JUMUNEvu7-ibqNLfk5XV6SMIyh-CWgGUjXzKAUTAO1_q59BZZWe0OZMTpAD2rHn6nTn2im1Mcu0JSSHRGB-NhkQwdxeb8I_mkx6DuDq0L2RuWDbHLygDvCJsmGa6n5GsMpChumBR3sRA-MUfWWQRD90&t=1f1fff7f|696|scriptStartupBlock|ScriptContentNoTags|Sys.Application.add_init(function() {
-    $create(Telerik.Web.UI.RadTabStrip, {"_postBackOnClick":true,"_postBackReference":"__doPostBack(\u0027ctl00$BodyPlaceHolder$rtsPublisherType\u0027,\u0027arguments\u0027)","_selectedIndex":0,"_skin":"MainTheme","clientStateFieldID":"ctl00_BodyPlaceHolder_rtsPublisherType_ClientState","selectedIndexes":["0"],"tabData":[{"value":"ArbManager"},{"value":"OrgTO"},{"value":"PerTO"},{"value":"Sro","cssClass":"other_mainTheme"},{"value":"Company","cssClass":"other_mainTheme"},{"value":"Person","cssClass":"other_mainTheme"},{"value":"Fns","cssClass":"other_mainTheme"},{"value":"Other"}]}, null, null, $get("ctl00_BodyPlaceHolder_rtsPublisherType"));
-});
-|610|scriptStartupBlock|ScriptContentNoTags|Sys.Application.add_init(function() {
-    $create(Telerik.Web.UI.RadMultiPage, {"clientStateFieldID":"ctl00_BodyPlaceHolder_radMulti_ClientState","pageViewData":[{"id":"ctl00_BodyPlaceHolder_RadPageView1"},{"id":"ctl00_BodyPlaceHolder_RadPageView2"},{"id":"ctl00_BodyPlaceHolder_RadPageView3"},{"id":"ctl00_BodyPlaceHolder_RadPageViewSro"},{"id":"ctl00_BodyPlaceHolder_RadPageViewCompany"},{"id":"ctl00_BodyPlaceHolder_RadPageViewPerson"},{"id":"ctl00_BodyPlaceHolder_RadPageViewFns"},{"id":"ctl00_BodyPlaceHolder_RadPageView4"}],"selectedIndex":0}, null, null, $get("ctl00_BodyPlaceHolder_radMulti"));
-});
-|
+}
+        |210|scriptStartupBlock|ScriptContentNoTags|
+document.getElementById('ctl00_PrivateOffice1_RequiredFieldValidator1').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_PrivateOffice1_RequiredFieldValidator1'));
+}
+|198|scriptStartupBlock|ScriptContentNoTags|
+document.getElementById('ctl00_PrivateOffice1_revEmailValidator').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('ctl00_PrivateOffice1_revEmailValidator'));
+}
+|90|onSubmit||if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;|6|expando|document.getElementById('ctl00_PrivateOffice1_ValidationSummary1')['showmessagebox']|"True"|7|expando|document.getElementById('ctl00_PrivateOffice1_ValidationSummary1')['showsummary']|"False"|6|expando|document.getElementById('ctl00_PrivateOffice1_ValidationSummary1')['displaymode']|"List"|12|expando|document.getElementById('ctl00_PrivateOffice1_ValidationSummary1')['validationGroup']|"RestorePsw"|41|expando|document.getElementById('ctl00_PrivateOffice1_RequiredFieldValidator1')['controltovalidate']|"ctl00_PrivateOffice1_tbEmailForPassword"|3|expando|document.getElementById('ctl00_PrivateOffice1_RequiredFieldValidator1')['focusOnError']|"t"|20|expando|document.getElementById('ctl00_PrivateOffice1_RequiredFieldValidator1')['errormessage']|"Укажите Ваш e-mail"|6|expando|document.getElementById('ctl00_PrivateOffice1_RequiredFieldValidator1')['display']|"None"|12|expando|document.getElementById('ctl00_PrivateOffice1_RequiredFieldValidator1')['validationGroup']|"RestorePsw"|39|expando|document.getElementById('ctl00_PrivateOffice1_RequiredFieldValidator1')['evaluationfunction']|"RequiredFieldValidatorEvaluateIsValid"|2|expando|document.getElementById('ctl00_PrivateOffice1_RequiredFieldValidator1')['initialvalue']|""|41|expando|document.getElementById('ctl00_PrivateOffice1_revEmailValidator')['controltovalidate']|"ctl00_PrivateOffice1_tbEmailForPassword"|3|expando|document.getElementById('ctl00_PrivateOffice1_revEmailValidator')['focusOnError']|"t"|45|expando|document.getElementById('ctl00_PrivateOffice1_revEmailValidator')['errormessage']|"Поле \"E-mail\" содержит некорректный адрес"|6|expando|document.getElementById('ctl00_PrivateOffice1_revEmailValidator')['display']|"None"|12|expando|document.getElementById('ctl00_PrivateOffice1_revEmailValidator')['validationGroup']|"RestorePsw"|43|expando|document.getElementById('ctl00_PrivateOffice1_revEmailValidator')['evaluationfunction']|"RegularExpressionValidatorEvaluateIsValid"|164|expando|document.getElementById('ctl00_PrivateOffice1_revEmailValidator')['validationexpression']|"^([a-zA-Z0-9-_\\.\\+]?([a-zA-Z0-9]+[-_\\.\\+]?)+)\\@(([a-zA-Z0-9]+([-\\.][a-zA-Z0-9]+)*\\.[a-zA-Z0-9]+)|([а-яА-ЯёЁ0-9]+([-\\.][а-яА-ЯёЁ0-9]+)*\\.[а-яА-ЯёЁ0-9]+))$"|
